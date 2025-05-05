@@ -9,7 +9,7 @@ import cors from "cors";
 
 // Config dotenv
 dotenv.config({
-  path: "../.env",
+  path: "./.env",
 });
 
 // Create app instance
