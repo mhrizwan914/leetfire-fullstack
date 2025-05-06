@@ -9,14 +9,17 @@ import {
   problem_delete,
   problem_solved,
 } from "../controllers/problem.controller.js";
+// Middleware
+import auth_middleware from "../middlewares/auth.middleware.js";
+import admin_middleware from "../middlewares/admin.middleware.js";
 
 const routes = Router();
 
 // Create
-routes.route("/create").post(problem_create);
+routes.route("/create").post(auth_middleware, admin_middleware, problem_create);
 
 // All
-routes.route("/all").post(problem_all);
+routes.route("/all").get(problem_all);
 
 // By id
 routes.route("/:id").post(problem_by_id);
