@@ -58,12 +58,14 @@ export const user_login = async_handler(async (req, res) => {
   // Set access token to cookies
   const cookie_option_access = {
     httpOnly: true,
-    secure: true,
+    sameSite: "strict",
+    secure: process.env.NODE_ENV !== "development",
     maxAge: 5 * 60 * 1000, // 5min
   };
   const cookie_option_refresh = {
     httpOnly: true,
-    secure: true,
+    sameSite: "strict",
+    secure: process.env.NODE_ENV !== "development",
     maxAge: 24 * 60 * 60 * 1000, // 24h
   };
   res.cookie("access_token", access_token, cookie_option_access);
@@ -150,5 +152,5 @@ export const user_logout = async_handler(async (req, res) => {
   // Clear cookies
   res.clearCookie("access_token");
   res.clearCookie("refresh_token");
-  return res.status(200).json(new api_response(200, {}, "User logout successfully"));
+  return res.status(200).json(new api_response(204, {}, "User logout successfully"));
 });
