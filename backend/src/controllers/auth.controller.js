@@ -40,7 +40,7 @@ export const user_login = async_handler(async (req, res) => {
       id: user.id,
       email: user.email,
       username: user.username,
-      role: user.role,
+      role: "admin",
     },
     process.env.JWT_ACCESS_TOKEN_SECRET,
     { expiresIn: process.env.JWT_ACCESS_TOKEN_EXPIRY }
