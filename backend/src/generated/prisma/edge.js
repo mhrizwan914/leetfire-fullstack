@@ -209,7 +209,7 @@ const config = {
     "db": {
       "url": {
         "fromEnvVar": "DATABASE_URL",
-        "value": "postgresql://admin:123456@localhost:5432/postgres"
+        "value": "postgresql://admin:123456@localhost:5433/postgres"
       }
     }
   },

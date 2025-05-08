@@ -40,7 +40,7 @@ export const user_login = async_handler(async (req, res) => {
       id: user.id,
       email: user.email,
       username: user.username,
-      role: "admin",
+      role: user.role,
     },
     process.env.JWT_ACCESS_TOKEN_SECRET,
     { expiresIn: process.env.JWT_ACCESS_TOKEN_EXPIRY }
@@ -60,7 +60,7 @@ export const user_login = async_handler(async (req, res) => {
     httpOnly: true,
     sameSite: "strict",
     secure: process.env.NODE_ENV !== "development",
-    maxAge: 5 * 60 * 1000, // 5min
+    maxAge: 15 * 60 * 1000, // 15min
   };
   const cookie_option_refresh = {
     httpOnly: true,
