@@ -3,7 +3,7 @@ import { Router } from "express";
 // Controllers
 import {
   problem_create,
-  problem_all,
+  problem_get_all,
   problem_by_id,
   problem_update,
   problem_delete,
@@ -19,16 +19,16 @@ const routes = Router();
 routes.route("/create").post(auth_middleware, admin_middleware, problem_create);
 
 // All
-routes.route("/all").get(problem_all);
+routes.route("/all").get(problem_get_all);
 
 // By id
-routes.route("/:id").post(problem_by_id);
+routes.route("/:id").get(auth_middleware, problem_by_id);
 
 // Update
-routes.route("/update").post(problem_update);
+routes.route("/update/:id").post(auth_middleware, admin_middleware, problem_update);
 
 // Delete
-routes.route("/delete/:id").post(problem_delete);
+routes.route("/delete/:id").get(auth_middleware, admin_middleware, problem_delete);
 
 // Solved
 routes.route("/solved").post(problem_solved);
