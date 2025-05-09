@@ -172,6 +172,27 @@ exports.Prisma.SubmissionScalarFieldEnum = {
   updatedAt: 'updatedAt'
 };
 
+exports.Prisma.Test_CaseScalarFieldEnum = {
+  id: 'id',
+  submission_id: 'submission_id',
+  test_case: 'test_case',
+  status: 'status',
+  std_input: 'std_input',
+  expected_output: 'expected_output',
+  std_error: 'std_error',
+  compile_output: 'compile_output',
+  memory: 'memory',
+  time: 'time',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+};
+
+exports.Prisma.SolvedScalarFieldEnum = {
+  id: 'id',
+  solved_by: 'solved_by',
+  problem_id: 'problem_id'
+};
+
 exports.Prisma.SortOrder = {
   asc: 'asc',
   desc: 'desc'
@@ -212,10 +233,17 @@ exports.SUBMISSION_STATUS = exports.$Enums.SUBMISSION_STATUS = {
   wrong: 'wrong'
 };
 
+exports.TEST_CASE_STATUS = exports.$Enums.TEST_CASE_STATUS = {
+  failed: 'failed',
+  passed: 'passed'
+};
+
 exports.Prisma.ModelName = {
   User: 'User',
   Problem: 'Problem',
-  Submission: 'Submission'
+  Submission: 'Submission',
+  Test_Case: 'Test_Case',
+  Solved: 'Solved'
 };
 
 /**

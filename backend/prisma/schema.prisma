@@ -45,6 +45,7 @@ model User {
   role                            USER_ROLE    @default(user)
   problems                        Problem[]
   submissions                     Submission[]
+  solved                          Solved[]
   refresh_token                   String?
   email_verification_token        String?
   email_verification_token_expiry DateTime?
@@ -62,6 +63,7 @@ model Problem {
   tags                String[]
   created_by          String
   submissions         Submission[]
+  solved              Solved[]
   examples            Json
   constraints         String
   hints               String?
@@ -108,4 +110,14 @@ model Test_Case {
   createdAt       DateTime         @default(now())
   updatedAt       DateTime         @updatedAt
   submission      Submission       @relation(fields: [submission_id], references: [id], onDelete: Cascade)
+}
+
+model Solved {
+  id         String  @id @default(uuid())
+  solved_by  String
+  problem_id String
+  user       User    @relation(fields: [solved_by], references: [id], onDelete: Cascade)
+  problem    Problem @relation(fields: [problem_id], references: [id], onDelete: Cascade)
+
+  @@unique([solved_by, problem_id])
 }
