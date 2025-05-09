@@ -25,22 +25,33 @@ enum PROBLEM_DIFFICULTY {
   hard
 }
 
+enum SUBMISSION_STATUS {
+  accepted
+  wrong
+}
+
+enum TEST_CASE_STATUS {
+  failed
+  passed
+}
+
 model User {
-  id                              String    @id @default(uuid())
+  id                              String       @id @default(uuid())
   username                        String
-  email                           String    @unique
+  email                           String       @unique
   password                        String
-  avatar_url                      String    @default("https://placehold.co/600x400/orange/white")
-  is_verified                     Boolean   @default(false)
-  role                            USER_ROLE @default(user)
+  avatar_url                      String       @default("https://placehold.co/600x400/orange/white")
+  is_verified                     Boolean      @default(false)
+  role                            USER_ROLE    @default(user)
   problems                        Problem[]
+  submissions                     Submission[]
   refresh_token                   String?
   email_verification_token        String?
   email_verification_token_expiry DateTime?
   password_reset_token            String?
   password_reset_token_expiry     DateTime?
-  createdAt                       DateTime  @default(now())
-  updatedAt                       DateTime  @updatedAt
+  createdAt                       DateTime     @default(now())
+  updatedAt                       DateTime     @updatedAt
 }
 
 model Problem {
@@ -50,6 +61,7 @@ model Problem {
   difficulty          PROBLEM_DIFFICULTY
   tags                String[]
   created_by          String
+  submissions         Submission[]
   examples            Json
   constraints         String
   hints               String?
@@ -60,4 +72,40 @@ model Problem {
   createdAt           DateTime           @default(now())
   updatedAt           DateTime           @updatedAt
   user                User               @relation(fields: [created_by], references: [id], onDelete: Cascade)
+}
+
+model Submission {
+  id             String            @id @default(uuid())
+  submitted_by   String
+  problem_id     String
+  source_code    Json
+  language       String
+  std_input      String?
+  std_output     String?
+  std_error      String?
+  compile_output String?
+  status         SUBMISSION_STATUS
+  memory         String?
+  time           String?
+  test_cases     Test_Case[]
+  createdAt      DateTime          @default(now())
+  updatedAt      DateTime          @updatedAt
+  user           User              @relation(fields: [submitted_by], references: [id], onDelete: Cascade)
+  problem        Problem           @relation(fields: [problem_id], references: [id], onDelete: Cascade)
+}
+
+model Test_Case {
+  id              String           @id @default(uuid())
+  submission_id   String
+  test_case       Int
+  status          TEST_CASE_STATUS
+  std_input       String?
+  expected_output String?
+  std_error       String?
+  compile_output  String?
+  memory          String?
+  time            String?
+  createdAt       DateTime         @default(now())
+  updatedAt       DateTime         @updatedAt
+  submission      Submission       @relation(fields: [submission_id], references: [id], onDelete: Cascade)
 }

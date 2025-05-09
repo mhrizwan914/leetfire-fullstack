@@ -28,7 +28,7 @@ routes.route("/:id").get(auth_middleware, problem_by_id);
 routes.route("/update/:id").post(auth_middleware, admin_middleware, problem_update);
 
 // Delete
-routes.route("/delete/:id").get(auth_middleware, admin_middleware, problem_delete);
+routes.route("/delete/:id").delete(auth_middleware, admin_middleware, problem_delete);
 
 // Solved
 routes.route("/solved").post(problem_solved);
