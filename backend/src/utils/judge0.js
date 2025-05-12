@@ -4,7 +4,7 @@ export function get_judge0_language_id(language) {
     PYTHON: 71,
     JAVA: 62,
   };
-  return available_language[language] || null;
+  return available_language[language.toUpperCase()] || null;
 }
 
 export function judge0_sleep(ms) {

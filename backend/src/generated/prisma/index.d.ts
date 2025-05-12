@@ -3889,6 +3889,7 @@ export namespace Prisma {
     id: string | null
     submitted_by: string | null
     problem_id: string | null
+    source_code: string | null
     language: string | null
     std_input: string | null
     std_output: string | null
@@ -3905,6 +3906,7 @@ export namespace Prisma {
     id: string | null
     submitted_by: string | null
     problem_id: string | null
+    source_code: string | null
     language: string | null
     std_input: string | null
     std_output: string | null
@@ -3940,6 +3942,7 @@ export namespace Prisma {
     id?: true
     submitted_by?: true
     problem_id?: true
+    source_code?: true
     language?: true
     std_input?: true
     std_output?: true
@@ -3956,6 +3959,7 @@ export namespace Prisma {
     id?: true
     submitted_by?: true
     problem_id?: true
+    source_code?: true
     language?: true
     std_input?: true
     std_output?: true
@@ -4062,7 +4066,7 @@ export namespace Prisma {
     id: string
     submitted_by: string
     problem_id: string
-    source_code: JsonValue
+    source_code: string
     language: string
     std_input: string | null
     std_output: string | null
@@ -4195,7 +4199,7 @@ export namespace Prisma {
       id: string
       submitted_by: string
       problem_id: string
-      source_code: Prisma.JsonValue
+      source_code: string
       language: string
       std_input: string | null
       std_output: string | null
@@ -4635,7 +4639,7 @@ export namespace Prisma {
     readonly id: FieldRef<"Submission", 'String'>
     readonly submitted_by: FieldRef<"Submission", 'String'>
     readonly problem_id: FieldRef<"Submission", 'String'>
-    readonly source_code: FieldRef<"Submission", 'Json'>
+    readonly source_code: FieldRef<"Submission", 'String'>
     readonly language: FieldRef<"Submission", 'String'>
     readonly std_input: FieldRef<"Submission", 'String'>
     readonly std_output: FieldRef<"Submission", 'String'>
@@ -5109,7 +5113,7 @@ export namespace Prisma {
     submission_id: string | null
     test_case: number | null
     status: $Enums.TEST_CASE_STATUS | null
-    std_input: string | null
+    std_output: string | null
     expected_output: string | null
     std_error: string | null
     compile_output: string | null
@@ -5124,7 +5128,7 @@ export namespace Prisma {
     submission_id: string | null
     test_case: number | null
     status: $Enums.TEST_CASE_STATUS | null
-    std_input: string | null
+    std_output: string | null
     expected_output: string | null
     std_error: string | null
     compile_output: string | null
@@ -5139,7 +5143,7 @@ export namespace Prisma {
     submission_id: number
     test_case: number
     status: number
-    std_input: number
+    std_output: number
     expected_output: number
     std_error: number
     compile_output: number
@@ -5164,7 +5168,7 @@ export namespace Prisma {
     submission_id?: true
     test_case?: true
     status?: true
-    std_input?: true
+    std_output?: true
     expected_output?: true
     std_error?: true
     compile_output?: true
@@ -5179,7 +5183,7 @@ export namespace Prisma {
     submission_id?: true
     test_case?: true
     status?: true
-    std_input?: true
+    std_output?: true
     expected_output?: true
     std_error?: true
     compile_output?: true
@@ -5194,7 +5198,7 @@ export namespace Prisma {
     submission_id?: true
     test_case?: true
     status?: true
-    std_input?: true
+    std_output?: true
     expected_output?: true
     std_error?: true
     compile_output?: true
@@ -5296,7 +5300,7 @@ export namespace Prisma {
     submission_id: string
     test_case: number
     status: $Enums.TEST_CASE_STATUS
-    std_input: string | null
+    std_output: string | null
     expected_output: string | null
     std_error: string | null
     compile_output: string | null
@@ -5330,7 +5334,7 @@ export namespace Prisma {
     submission_id?: boolean
     test_case?: boolean
     status?: boolean
-    std_input?: boolean
+    std_output?: boolean
     expected_output?: boolean
     std_error?: boolean
     compile_output?: boolean
@@ -5346,7 +5350,7 @@ export namespace Prisma {
     submission_id?: boolean
     test_case?: boolean
     status?: boolean
-    std_input?: boolean
+    std_output?: boolean
     expected_output?: boolean
     std_error?: boolean
     compile_output?: boolean
@@ -5362,7 +5366,7 @@ export namespace Prisma {
     submission_id?: boolean
     test_case?: boolean
     status?: boolean
-    std_input?: boolean
+    std_output?: boolean
     expected_output?: boolean
     std_error?: boolean
     compile_output?: boolean
@@ -5378,7 +5382,7 @@ export namespace Prisma {
     submission_id?: boolean
     test_case?: boolean
     status?: boolean
-    std_input?: boolean
+    std_output?: boolean
     expected_output?: boolean
     std_error?: boolean
     compile_output?: boolean
@@ -5388,7 +5392,7 @@ export namespace Prisma {
     updatedAt?: boolean
   }
 
-  export type Test_CaseOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "submission_id" | "test_case" | "status" | "std_input" | "expected_output" | "std_error" | "compile_output" | "memory" | "time" | "createdAt" | "updatedAt", ExtArgs["result"]["test_Case"]>
+  export type Test_CaseOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "submission_id" | "test_case" | "status" | "std_output" | "expected_output" | "std_error" | "compile_output" | "memory" | "time" | "createdAt" | "updatedAt", ExtArgs["result"]["test_Case"]>
   export type Test_CaseInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     submission?: boolean | SubmissionDefaultArgs<ExtArgs>
   }
@@ -5409,7 +5413,7 @@ export namespace Prisma {
       submission_id: string
       test_case: number
       status: $Enums.TEST_CASE_STATUS
-      std_input: string | null
+      std_output: string | null
       expected_output: string | null
       std_error: string | null
       compile_output: string | null
@@ -5845,7 +5849,7 @@ export namespace Prisma {
     readonly submission_id: FieldRef<"Test_Case", 'String'>
     readonly test_case: FieldRef<"Test_Case", 'Int'>
     readonly status: FieldRef<"Test_Case", 'TEST_CASE_STATUS'>
-    readonly std_input: FieldRef<"Test_Case", 'String'>
+    readonly std_output: FieldRef<"Test_Case", 'String'>
     readonly expected_output: FieldRef<"Test_Case", 'String'>
     readonly std_error: FieldRef<"Test_Case", 'String'>
     readonly compile_output: FieldRef<"Test_Case", 'String'>
@@ -7387,7 +7391,7 @@ export namespace Prisma {
     submission_id: 'submission_id',
     test_case: 'test_case',
     status: 'status',
-    std_input: 'std_input',
+    std_output: 'std_output',
     expected_output: 'expected_output',
     std_error: 'std_error',
     compile_output: 'compile_output',
@@ -7814,7 +7818,7 @@ export namespace Prisma {
     id?: StringFilter<"Submission"> | string
     submitted_by?: StringFilter<"Submission"> | string
     problem_id?: StringFilter<"Submission"> | string
-    source_code?: JsonFilter<"Submission">
+    source_code?: StringFilter<"Submission"> | string
     language?: StringFilter<"Submission"> | string
     std_input?: StringNullableFilter<"Submission"> | string | null
     std_output?: StringNullableFilter<"Submission"> | string | null
@@ -7857,7 +7861,7 @@ export namespace Prisma {
     NOT?: SubmissionWhereInput | SubmissionWhereInput[]
     submitted_by?: StringFilter<"Submission"> | string
     problem_id?: StringFilter<"Submission"> | string
-    source_code?: JsonFilter<"Submission">
+    source_code?: StringFilter<"Submission"> | string
     language?: StringFilter<"Submission"> | string
     std_input?: StringNullableFilter<"Submission"> | string | null
     std_output?: StringNullableFilter<"Submission"> | string | null
@@ -7900,7 +7904,7 @@ export namespace Prisma {
     id?: StringWithAggregatesFilter<"Submission"> | string
     submitted_by?: StringWithAggregatesFilter<"Submission"> | string
     problem_id?: StringWithAggregatesFilter<"Submission"> | string
-    source_code?: JsonWithAggregatesFilter<"Submission">
+    source_code?: StringWithAggregatesFilter<"Submission"> | string
     language?: StringWithAggregatesFilter<"Submission"> | string
     std_input?: StringNullableWithAggregatesFilter<"Submission"> | string | null
     std_output?: StringNullableWithAggregatesFilter<"Submission"> | string | null
@@ -7921,7 +7925,7 @@ export namespace Prisma {
     submission_id?: StringFilter<"Test_Case"> | string
     test_case?: IntFilter<"Test_Case"> | number
     status?: EnumTEST_CASE_STATUSFilter<"Test_Case"> | $Enums.TEST_CASE_STATUS
-    std_input?: StringNullableFilter<"Test_Case"> | string | null
+    std_output?: StringNullableFilter<"Test_Case"> | string | null
     expected_output?: StringNullableFilter<"Test_Case"> | string | null
     std_error?: StringNullableFilter<"Test_Case"> | string | null
     compile_output?: StringNullableFilter<"Test_Case"> | string | null
@@ -7937,7 +7941,7 @@ export namespace Prisma {
     submission_id?: SortOrder
     test_case?: SortOrder
     status?: SortOrder
-    std_input?: SortOrderInput | SortOrder
+    std_output?: SortOrderInput | SortOrder
     expected_output?: SortOrderInput | SortOrder
     std_error?: SortOrderInput | SortOrder
     compile_output?: SortOrderInput | SortOrder
@@ -7956,7 +7960,7 @@ export namespace Prisma {
     submission_id?: StringFilter<"Test_Case"> | string
     test_case?: IntFilter<"Test_Case"> | number
     status?: EnumTEST_CASE_STATUSFilter<"Test_Case"> | $Enums.TEST_CASE_STATUS
-    std_input?: StringNullableFilter<"Test_Case"> | string | null
+    std_output?: StringNullableFilter<"Test_Case"> | string | null
     expected_output?: StringNullableFilter<"Test_Case"> | string | null
     std_error?: StringNullableFilter<"Test_Case"> | string | null
     compile_output?: StringNullableFilter<"Test_Case"> | string | null
@@ -7972,7 +7976,7 @@ export namespace Prisma {
     submission_id?: SortOrder
     test_case?: SortOrder
     status?: SortOrder
-    std_input?: SortOrderInput | SortOrder
+    std_output?: SortOrderInput | SortOrder
     expected_output?: SortOrderInput | SortOrder
     std_error?: SortOrderInput | SortOrder
     compile_output?: SortOrderInput | SortOrder
@@ -7995,7 +7999,7 @@ export namespace Prisma {
     submission_id?: StringWithAggregatesFilter<"Test_Case"> | string
     test_case?: IntWithAggregatesFilter<"Test_Case"> | number
     status?: EnumTEST_CASE_STATUSWithAggregatesFilter<"Test_Case"> | $Enums.TEST_CASE_STATUS
-    std_input?: StringNullableWithAggregatesFilter<"Test_Case"> | string | null
+    std_output?: StringNullableWithAggregatesFilter<"Test_Case"> | string | null
     expected_output?: StringNullableWithAggregatesFilter<"Test_Case"> | string | null
     std_error?: StringNullableWithAggregatesFilter<"Test_Case"> | string | null
     compile_output?: StringNullableWithAggregatesFilter<"Test_Case"> | string | null
@@ -8320,7 +8324,7 @@ export namespace Prisma {
 
   export type SubmissionCreateInput = {
     id?: string
-    source_code: JsonNullValueInput | InputJsonValue
+    source_code: string
     language: string
     std_input?: string | null
     std_output?: string | null
@@ -8340,7 +8344,7 @@ export namespace Prisma {
     id?: string
     submitted_by: string
     problem_id: string
-    source_code: JsonNullValueInput | InputJsonValue
+    source_code: string
     language: string
     std_input?: string | null
     std_output?: string | null
@@ -8356,7 +8360,7 @@ export namespace Prisma {
 
   export type SubmissionUpdateInput = {
     id?: StringFieldUpdateOperationsInput | string
-    source_code?: JsonNullValueInput | InputJsonValue
+    source_code?: StringFieldUpdateOperationsInput | string
     language?: StringFieldUpdateOperationsInput | string
     std_input?: NullableStringFieldUpdateOperationsInput | string | null
     std_output?: NullableStringFieldUpdateOperationsInput | string | null
@@ -8376,7 +8380,7 @@ export namespace Prisma {
     id?: StringFieldUpdateOperationsInput | string
     submitted_by?: StringFieldUpdateOperationsInput | string
     problem_id?: StringFieldUpdateOperationsInput | string
-    source_code?: JsonNullValueInput | InputJsonValue
+    source_code?: StringFieldUpdateOperationsInput | string
     language?: StringFieldUpdateOperationsInput | string
     std_input?: NullableStringFieldUpdateOperationsInput | string | null
     std_output?: NullableStringFieldUpdateOperationsInput | string | null
@@ -8394,7 +8398,7 @@ export namespace Prisma {
     id?: string
     submitted_by: string
     problem_id: string
-    source_code: JsonNullValueInput | InputJsonValue
+    source_code: string
     language: string
     std_input?: string | null
     std_output?: string | null
@@ -8409,7 +8413,7 @@ export namespace Prisma {
 
   export type SubmissionUpdateManyMutationInput = {
     id?: StringFieldUpdateOperationsInput | string
-    source_code?: JsonNullValueInput | InputJsonValue
+    source_code?: StringFieldUpdateOperationsInput | string
     language?: StringFieldUpdateOperationsInput | string
     std_input?: NullableStringFieldUpdateOperationsInput | string | null
     std_output?: NullableStringFieldUpdateOperationsInput | string | null
@@ -8426,7 +8430,7 @@ export namespace Prisma {
     id?: StringFieldUpdateOperationsInput | string
     submitted_by?: StringFieldUpdateOperationsInput | string
     problem_id?: StringFieldUpdateOperationsInput | string
-    source_code?: JsonNullValueInput | InputJsonValue
+    source_code?: StringFieldUpdateOperationsInput | string
     language?: StringFieldUpdateOperationsInput | string
     std_input?: NullableStringFieldUpdateOperationsInput | string | null
     std_output?: NullableStringFieldUpdateOperationsInput | string | null
@@ -8443,7 +8447,7 @@ export namespace Prisma {
     id?: string
     test_case: number
     status: $Enums.TEST_CASE_STATUS
-    std_input?: string | null
+    std_output?: string | null
     expected_output?: string | null
     std_error?: string | null
     compile_output?: string | null
@@ -8459,7 +8463,7 @@ export namespace Prisma {
     submission_id: string
     test_case: number
     status: $Enums.TEST_CASE_STATUS
-    std_input?: string | null
+    std_output?: string | null
     expected_output?: string | null
     std_error?: string | null
     compile_output?: string | null
@@ -8473,7 +8477,7 @@ export namespace Prisma {
     id?: StringFieldUpdateOperationsInput | string
     test_case?: IntFieldUpdateOperationsInput | number
     status?: EnumTEST_CASE_STATUSFieldUpdateOperationsInput | $Enums.TEST_CASE_STATUS
-    std_input?: NullableStringFieldUpdateOperationsInput | string | null
+    std_output?: NullableStringFieldUpdateOperationsInput | string | null
     expected_output?: NullableStringFieldUpdateOperationsInput | string | null
     std_error?: NullableStringFieldUpdateOperationsInput | string | null
     compile_output?: NullableStringFieldUpdateOperationsInput | string | null
@@ -8489,7 +8493,7 @@ export namespace Prisma {
     submission_id?: StringFieldUpdateOperationsInput | string
     test_case?: IntFieldUpdateOperationsInput | number
     status?: EnumTEST_CASE_STATUSFieldUpdateOperationsInput | $Enums.TEST_CASE_STATUS
-    std_input?: NullableStringFieldUpdateOperationsInput | string | null
+    std_output?: NullableStringFieldUpdateOperationsInput | string | null
     expected_output?: NullableStringFieldUpdateOperationsInput | string | null
     std_error?: NullableStringFieldUpdateOperationsInput | string | null
     compile_output?: NullableStringFieldUpdateOperationsInput | string | null
@@ -8504,7 +8508,7 @@ export namespace Prisma {
     submission_id: string
     test_case: number
     status: $Enums.TEST_CASE_STATUS
-    std_input?: string | null
+    std_output?: string | null
     expected_output?: string | null
     std_error?: string | null
     compile_output?: string | null
@@ -8518,7 +8522,7 @@ export namespace Prisma {
     id?: StringFieldUpdateOperationsInput | string
     test_case?: IntFieldUpdateOperationsInput | number
     status?: EnumTEST_CASE_STATUSFieldUpdateOperationsInput | $Enums.TEST_CASE_STATUS
-    std_input?: NullableStringFieldUpdateOperationsInput | string | null
+    std_output?: NullableStringFieldUpdateOperationsInput | string | null
     expected_output?: NullableStringFieldUpdateOperationsInput | string | null
     std_error?: NullableStringFieldUpdateOperationsInput | string | null
     compile_output?: NullableStringFieldUpdateOperationsInput | string | null
@@ -8533,7 +8537,7 @@ export namespace Prisma {
     submission_id?: StringFieldUpdateOperationsInput | string
     test_case?: IntFieldUpdateOperationsInput | number
     status?: EnumTEST_CASE_STATUSFieldUpdateOperationsInput | $Enums.TEST_CASE_STATUS
-    std_input?: NullableStringFieldUpdateOperationsInput | string | null
+    std_output?: NullableStringFieldUpdateOperationsInput | string | null
     expected_output?: NullableStringFieldUpdateOperationsInput | string | null
     std_error?: NullableStringFieldUpdateOperationsInput | string | null
     compile_output?: NullableStringFieldUpdateOperationsInput | string | null
@@ -8981,6 +8985,7 @@ export namespace Prisma {
     id?: SortOrder
     submitted_by?: SortOrder
     problem_id?: SortOrder
+    source_code?: SortOrder
     language?: SortOrder
     std_input?: SortOrder
     std_output?: SortOrder
@@ -8997,6 +9002,7 @@ export namespace Prisma {
     id?: SortOrder
     submitted_by?: SortOrder
     problem_id?: SortOrder
+    source_code?: SortOrder
     language?: SortOrder
     std_input?: SortOrder
     std_output?: SortOrder
@@ -9047,7 +9053,7 @@ export namespace Prisma {
     submission_id?: SortOrder
     test_case?: SortOrder
     status?: SortOrder
-    std_input?: SortOrder
+    std_output?: SortOrder
     expected_output?: SortOrder
     std_error?: SortOrder
     compile_output?: SortOrder
@@ -9066,7 +9072,7 @@ export namespace Prisma {
     submission_id?: SortOrder
     test_case?: SortOrder
     status?: SortOrder
-    std_input?: SortOrder
+    std_output?: SortOrder
     expected_output?: SortOrder
     std_error?: SortOrder
     compile_output?: SortOrder
@@ -9081,7 +9087,7 @@ export namespace Prisma {
     submission_id?: SortOrder
     test_case?: SortOrder
     status?: SortOrder
-    std_input?: SortOrder
+    std_output?: SortOrder
     expected_output?: SortOrder
     std_error?: SortOrder
     compile_output?: SortOrder
@@ -9848,7 +9854,7 @@ export namespace Prisma {
 
   export type SubmissionCreateWithoutUserInput = {
     id?: string
-    source_code: JsonNullValueInput | InputJsonValue
+    source_code: string
     language: string
     std_input?: string | null
     std_output?: string | null
@@ -9866,7 +9872,7 @@ export namespace Prisma {
   export type SubmissionUncheckedCreateWithoutUserInput = {
     id?: string
     problem_id: string
-    source_code: JsonNullValueInput | InputJsonValue
+    source_code: string
     language: string
     std_input?: string | null
     std_output?: string | null
@@ -9970,7 +9976,7 @@ export namespace Prisma {
     id?: StringFilter<"Submission"> | string
     submitted_by?: StringFilter<"Submission"> | string
     problem_id?: StringFilter<"Submission"> | string
-    source_code?: JsonFilter<"Submission">
+    source_code?: StringFilter<"Submission"> | string
     language?: StringFilter<"Submission"> | string
     std_input?: StringNullableFilter<"Submission"> | string | null
     std_output?: StringNullableFilter<"Submission"> | string | null
@@ -10010,7 +10016,7 @@ export namespace Prisma {
 
   export type SubmissionCreateWithoutProblemInput = {
     id?: string
-    source_code: JsonNullValueInput | InputJsonValue
+    source_code: string
     language: string
     std_input?: string | null
     std_output?: string | null
@@ -10028,7 +10034,7 @@ export namespace Prisma {
   export type SubmissionUncheckedCreateWithoutProblemInput = {
     id?: string
     submitted_by: string
-    source_code: JsonNullValueInput | InputJsonValue
+    source_code: string
     language: string
     std_input?: string | null
     std_output?: string | null
@@ -10200,7 +10206,7 @@ export namespace Prisma {
     id?: string
     test_case: number
     status: $Enums.TEST_CASE_STATUS
-    std_input?: string | null
+    std_output?: string | null
     expected_output?: string | null
     std_error?: string | null
     compile_output?: string | null
@@ -10214,7 +10220,7 @@ export namespace Prisma {
     id?: string
     test_case: number
     status: $Enums.TEST_CASE_STATUS
-    std_input?: string | null
+    std_output?: string | null
     expected_output?: string | null
     std_error?: string | null
     compile_output?: string | null
@@ -10344,7 +10350,7 @@ export namespace Prisma {
     submission_id?: StringFilter<"Test_Case"> | string
     test_case?: IntFilter<"Test_Case"> | number
     status?: EnumTEST_CASE_STATUSFilter<"Test_Case"> | $Enums.TEST_CASE_STATUS
-    std_input?: StringNullableFilter<"Test_Case"> | string | null
+    std_output?: StringNullableFilter<"Test_Case"> | string | null
     expected_output?: StringNullableFilter<"Test_Case"> | string | null
     std_error?: StringNullableFilter<"Test_Case"> | string | null
     compile_output?: StringNullableFilter<"Test_Case"> | string | null
@@ -10454,7 +10460,7 @@ export namespace Prisma {
 
   export type SubmissionCreateWithoutTest_casesInput = {
     id?: string
-    source_code: JsonNullValueInput | InputJsonValue
+    source_code: string
     language: string
     std_input?: string | null
     std_output?: string | null
@@ -10473,7 +10479,7 @@ export namespace Prisma {
     id?: string
     submitted_by: string
     problem_id: string
-    source_code: JsonNullValueInput | InputJsonValue
+    source_code: string
     language: string
     std_input?: string | null
     std_output?: string | null
@@ -10504,7 +10510,7 @@ export namespace Prisma {
 
   export type SubmissionUpdateWithoutTest_casesInput = {
     id?: StringFieldUpdateOperationsInput | string
-    source_code?: JsonNullValueInput | InputJsonValue
+    source_code?: StringFieldUpdateOperationsInput | string
     language?: StringFieldUpdateOperationsInput | string
     std_input?: NullableStringFieldUpdateOperationsInput | string | null
     std_output?: NullableStringFieldUpdateOperationsInput | string | null
@@ -10523,7 +10529,7 @@ export namespace Prisma {
     id?: StringFieldUpdateOperationsInput | string
     submitted_by?: StringFieldUpdateOperationsInput | string
     problem_id?: StringFieldUpdateOperationsInput | string
-    source_code?: JsonNullValueInput | InputJsonValue
+    source_code?: StringFieldUpdateOperationsInput | string
     language?: StringFieldUpdateOperationsInput | string
     std_input?: NullableStringFieldUpdateOperationsInput | string | null
     std_output?: NullableStringFieldUpdateOperationsInput | string | null
@@ -10740,7 +10746,7 @@ export namespace Prisma {
   export type SubmissionCreateManyUserInput = {
     id?: string
     problem_id: string
-    source_code: JsonNullValueInput | InputJsonValue
+    source_code: string
     language: string
     std_input?: string | null
     std_output?: string | null
@@ -10815,7 +10821,7 @@ export namespace Prisma {
 
   export type SubmissionUpdateWithoutUserInput = {
     id?: StringFieldUpdateOperationsInput | string
-    source_code?: JsonNullValueInput | InputJsonValue
+    source_code?: StringFieldUpdateOperationsInput | string
     language?: StringFieldUpdateOperationsInput | string
     std_input?: NullableStringFieldUpdateOperationsInput | string | null
     std_output?: NullableStringFieldUpdateOperationsInput | string | null
@@ -10833,7 +10839,7 @@ export namespace Prisma {
   export type SubmissionUncheckedUpdateWithoutUserInput = {
     id?: StringFieldUpdateOperationsInput | string
     problem_id?: StringFieldUpdateOperationsInput | string
-    source_code?: JsonNullValueInput | InputJsonValue
+    source_code?: StringFieldUpdateOperationsInput | string
     language?: StringFieldUpdateOperationsInput | string
     std_input?: NullableStringFieldUpdateOperationsInput | string | null
     std_output?: NullableStringFieldUpdateOperationsInput | string | null
@@ -10850,7 +10856,7 @@ export namespace Prisma {
   export type SubmissionUncheckedUpdateManyWithoutUserInput = {
     id?: StringFieldUpdateOperationsInput | string
     problem_id?: StringFieldUpdateOperationsInput | string
-    source_code?: JsonNullValueInput | InputJsonValue
+    source_code?: StringFieldUpdateOperationsInput | string
     language?: StringFieldUpdateOperationsInput | string
     std_input?: NullableStringFieldUpdateOperationsInput | string | null
     std_output?: NullableStringFieldUpdateOperationsInput | string | null
@@ -10881,7 +10887,7 @@ export namespace Prisma {
   export type SubmissionCreateManyProblemInput = {
     id?: string
     submitted_by: string
-    source_code: JsonNullValueInput | InputJsonValue
+    source_code: string
     language: string
     std_input?: string | null
     std_output?: string | null
@@ -10901,7 +10907,7 @@ export namespace Prisma {
 
   export type SubmissionUpdateWithoutProblemInput = {
     id?: StringFieldUpdateOperationsInput | string
-    source_code?: JsonNullValueInput | InputJsonValue
+    source_code?: StringFieldUpdateOperationsInput | string
     language?: StringFieldUpdateOperationsInput | string
     std_input?: NullableStringFieldUpdateOperationsInput | string | null
     std_output?: NullableStringFieldUpdateOperationsInput | string | null
@@ -10919,7 +10925,7 @@ export namespace Prisma {
   export type SubmissionUncheckedUpdateWithoutProblemInput = {
     id?: StringFieldUpdateOperationsInput | string
     submitted_by?: StringFieldUpdateOperationsInput | string
-    source_code?: JsonNullValueInput | InputJsonValue
+    source_code?: StringFieldUpdateOperationsInput | string
     language?: StringFieldUpdateOperationsInput | string
     std_input?: NullableStringFieldUpdateOperationsInput | string | null
     std_output?: NullableStringFieldUpdateOperationsInput | string | null
@@ -10936,7 +10942,7 @@ export namespace Prisma {
   export type SubmissionUncheckedUpdateManyWithoutProblemInput = {
     id?: StringFieldUpdateOperationsInput | string
     submitted_by?: StringFieldUpdateOperationsInput | string
-    source_code?: JsonNullValueInput | InputJsonValue
+    source_code?: StringFieldUpdateOperationsInput | string
     language?: StringFieldUpdateOperationsInput | string
     std_input?: NullableStringFieldUpdateOperationsInput | string | null
     std_output?: NullableStringFieldUpdateOperationsInput | string | null
@@ -10968,7 +10974,7 @@ export namespace Prisma {
     id?: string
     test_case: number
     status: $Enums.TEST_CASE_STATUS
-    std_input?: string | null
+    std_output?: string | null
     expected_output?: string | null
     std_error?: string | null
     compile_output?: string | null
@@ -10982,7 +10988,7 @@ export namespace Prisma {
     id?: StringFieldUpdateOperationsInput | string
     test_case?: IntFieldUpdateOperationsInput | number
     status?: EnumTEST_CASE_STATUSFieldUpdateOperationsInput | $Enums.TEST_CASE_STATUS
-    std_input?: NullableStringFieldUpdateOperationsInput | string | null
+    std_output?: NullableStringFieldUpdateOperationsInput | string | null
     expected_output?: NullableStringFieldUpdateOperationsInput | string | null
     std_error?: NullableStringFieldUpdateOperationsInput | string | null
     compile_output?: NullableStringFieldUpdateOperationsInput | string | null
@@ -10996,7 +11002,7 @@ export namespace Prisma {
     id?: StringFieldUpdateOperationsInput | string
     test_case?: IntFieldUpdateOperationsInput | number
     status?: EnumTEST_CASE_STATUSFieldUpdateOperationsInput | $Enums.TEST_CASE_STATUS
-    std_input?: NullableStringFieldUpdateOperationsInput | string | null
+    std_output?: NullableStringFieldUpdateOperationsInput | string | null
     expected_output?: NullableStringFieldUpdateOperationsInput | string | null
     std_error?: NullableStringFieldUpdateOperationsInput | string | null
     compile_output?: NullableStringFieldUpdateOperationsInput | string | null
@@ -11010,7 +11016,7 @@ export namespace Prisma {
     id?: StringFieldUpdateOperationsInput | string
     test_case?: IntFieldUpdateOperationsInput | number
     status?: EnumTEST_CASE_STATUSFieldUpdateOperationsInput | $Enums.TEST_CASE_STATUS
-    std_input?: NullableStringFieldUpdateOperationsInput | string | null
+    std_output?: NullableStringFieldUpdateOperationsInput | string | null
     expected_output?: NullableStringFieldUpdateOperationsInput | string | null
     std_error?: NullableStringFieldUpdateOperationsInput | string | null
     compile_output?: NullableStringFieldUpdateOperationsInput | string | null

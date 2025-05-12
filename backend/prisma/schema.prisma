@@ -80,7 +80,7 @@ model Submission {
   id             String            @id @default(uuid())
   submitted_by   String
   problem_id     String
-  source_code    Json
+  source_code    String
   language       String
   std_input      String?
   std_output     String?
@@ -101,7 +101,7 @@ model Test_Case {
   submission_id   String
   test_case       Int
   status          TEST_CASE_STATUS
-  std_input       String?
+  std_output      String?
   expected_output String?
   std_error       String?
   compile_output  String?

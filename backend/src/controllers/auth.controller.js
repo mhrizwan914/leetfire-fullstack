@@ -1,10 +1,7 @@
 // Utils
 import {
   async_handler,
-  generate_temporary_token,
   api_response,
-  send_mail,
-  generate_email_verification_body,
   api_error,
   generate_jwt_token,
   verify_password,
