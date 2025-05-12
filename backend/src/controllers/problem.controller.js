@@ -99,7 +99,7 @@ export const problem_get_all = async_handler(async (req, res) => {
     .json(new api_response(200, { problems: all_problems }, "All problems found successfully"));
 });
 
-// By id
+// Single
 export const problem_by_id = async_handler(async (req, res) => {
   // Get data
   const { id } = req.params;

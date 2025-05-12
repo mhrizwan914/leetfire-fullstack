@@ -21,7 +21,7 @@ routes.route("/create").post(auth_middleware, admin_middleware, problem_create);
 // All
 routes.route("/all").get(problem_get_all);
 
-// By id
+// Single
 routes.route("/:id").get(auth_middleware, problem_by_id);
 
 // Update
