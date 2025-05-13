@@ -21,6 +21,9 @@ routes.route("/create").post(auth_middleware, admin_middleware, problem_create);
 // All
 routes.route("/all").get(problem_get_all);
 
+// Solved
+routes.route("/solved").get(auth_middleware, problem_solved);
+
 // Single
 routes.route("/:id").get(auth_middleware, problem_by_id);
 
@@ -29,8 +32,5 @@ routes.route("/update/:id").post(auth_middleware, admin_middleware, problem_upda
 
 // Delete
 routes.route("/delete/:id").delete(auth_middleware, admin_middleware, problem_delete);
-
-// Solved
-routes.route("/solved").post(problem_solved);
 
 export default routes;

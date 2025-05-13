@@ -190,7 +190,26 @@ exports.Prisma.Test_CaseScalarFieldEnum = {
 exports.Prisma.SolvedScalarFieldEnum = {
   id: 'id',
   solved_by: 'solved_by',
-  problem_id: 'problem_id'
+  problem_id: 'problem_id',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+};
+
+exports.Prisma.PlaylistScalarFieldEnum = {
+  id: 'id',
+  title: 'title',
+  description: 'description',
+  created_by: 'created_by',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+};
+
+exports.Prisma.Problem_ListsScalarFieldEnum = {
+  id: 'id',
+  playlist_id: 'playlist_id',
+  problem_id: 'problem_id',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
 };
 
 exports.Prisma.SortOrder = {
@@ -243,7 +262,9 @@ exports.Prisma.ModelName = {
   Problem: 'Problem',
   Submission: 'Submission',
   Test_Case: 'Test_Case',
-  Solved: 'Solved'
+  Solved: 'Solved',
+  Playlist: 'Playlist',
+  Problem_Lists: 'Problem_Lists'
 };
 
 /**

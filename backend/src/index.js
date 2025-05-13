@@ -10,6 +10,7 @@ import auth_routes from "./routes/auth.route.js";
 import problem_routes from "./routes/problem.route.js";
 import problem_execution_routes from "./routes/problem_execution.route.js";
 import submission_routes from "./routes/submission.route.js";
+import playlist_routes from "./routes/playlist.route.js";
 
 // Assign port
 const port = process.env.PORT || 8000;
@@ -20,6 +21,7 @@ app.use("/api/v1/auth", auth_routes);
 app.use("/api/v1/problem", problem_routes);
 app.use("/api/v1/problem-execution", problem_execution_routes);
 app.use("/api/v1/submission", submission_routes);
+app.use("/api/v1/playlist", playlist_routes);
 
 // Not found route
 app.use((req, res, next) => {

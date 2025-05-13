@@ -234,4 +234,26 @@ export const problem_delete = async_handler(async (req, res) => {
 });
 
 // Solved
-export const problem_solved = async_handler(async (req, res) => {});
+export const problem_solved = async_handler(async (req, res) => {
+  // Get user id
+  const { id: user_id } = req.user;
+  // Find problems
+  const solved = await db.problem.findMany({
+    where: {
+      solved: {
+        some: {
+          solved_by: user_id,
+        },
+      },
+    },
+    include: {
+      solved: {
+        where: {
+          solved_by: user_id,
+        },
+      },
+    },
+  });
+  // Send reponse
+  return res.status(200).json(new api_response(200, { solved }, "All solved problems found"));
+});

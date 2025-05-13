@@ -46,6 +46,7 @@ model User {
   problems                        Problem[]
   submissions                     Submission[]
   solved                          Solved[]
+  playlist                        Playlist[]
   refresh_token                   String?
   email_verification_token        String?
   email_verification_token_expiry DateTime?
@@ -64,6 +65,7 @@ model Problem {
   created_by          String
   submissions         Submission[]
   solved              Solved[]
+  problem_lists       Problem_Lists[]
   examples            Json
   constraints         String
   hints               String?
@@ -113,11 +115,38 @@ model Test_Case {
 }
 
 model Solved {
-  id         String  @id @default(uuid())
+  id         String   @id @default(uuid())
   solved_by  String
   problem_id String
-  user       User    @relation(fields: [solved_by], references: [id], onDelete: Cascade)
-  problem    Problem @relation(fields: [problem_id], references: [id], onDelete: Cascade)
+  createdAt  DateTime @default(now())
+  updatedAt  DateTime @updatedAt
+  user       User     @relation(fields: [solved_by], references: [id], onDelete: Cascade)
+  problem    Problem  @relation(fields: [problem_id], references: [id], onDelete: Cascade)
 
   @@unique([solved_by, problem_id])
+}
+
+model Playlist {
+  id          String          @id @default(uuid())
+  title       String
+  description String
+  created_by  String
+  problems    Problem_Lists[]
+  createdAt   DateTime        @default(now())
+  updatedAt   DateTime        @updatedAt
+  user        User            @relation(fields: [created_by], references: [id], onDelete: Cascade)
+
+  @@unique([title, created_by])
+}
+
+model Problem_Lists {
+  id          String   @id @default(uuid())
+  playlist_id String
+  problem_id  String
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+  playlist    Playlist @relation(fields: [playlist_id], references: [id], onDelete: Cascade)
+  problem     Problem  @relation(fields: [problem_id], references: [id], onDelete: Cascade)
+
+  @@unique([playlist_id, problem_id])
 }
