@@ -10,7 +10,7 @@ export const health_check = async_handler(async (req, res) => {
         timestamp: new Date(),
         version: "1.0.0",
       },
-      "Server is running"
-    )
+      "Server is running",
+    ),
   );
 });

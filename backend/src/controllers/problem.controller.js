@@ -57,7 +57,7 @@ export const problem_create = async_handler(async (req, res) => {
       if (result.status.id !== 3) {
         throw new api_error(
           400,
-          `Test case ${i + 1} failed for Language ${language}. ${result.status.description}`
+          `Test case ${i + 1} failed for Language ${language}. ${result.status.description}`,
         );
       }
     }
@@ -176,7 +176,7 @@ export const problem_update = async_handler(async (req, res) => {
       if (result.status.id !== 3) {
         throw new api_error(
           400,
-          `Test case ${i + 1} failed for Language ${language}. ${result.status.description}`
+          `Test case ${i + 1} failed for Language ${language}. ${result.status.description}`,
         );
       }
     }

@@ -20,7 +20,7 @@ export async function send_submissions(submissions) {
         "Content-Type": "application/json",
       },
       body: JSON.stringify({ submissions }),
-    }
+    },
   );
   const data = await response.json();
   return data;
@@ -35,7 +35,7 @@ export async function test_cases_results(tokens) {
       }).toString()}`,
       {
         method: "GET",
-      }
+      },
     );
     const tokens_data = await tokens_response.json();
     const results = tokens_data.submissions;

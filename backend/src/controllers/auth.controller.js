@@ -40,7 +40,7 @@ export const user_login = async_handler(async (req, res) => {
       role: user.role,
     },
     process.env.JWT_ACCESS_TOKEN_SECRET,
-    { expiresIn: process.env.JWT_ACCESS_TOKEN_EXPIRY }
+    { expiresIn: process.env.JWT_ACCESS_TOKEN_EXPIRY },
   );
   const refresh_token = generate_jwt_token(
     {
@@ -50,7 +50,7 @@ export const user_login = async_handler(async (req, res) => {
       role: user.role,
     },
     process.env.JWT_REFRESH_TOKEN_SECRET,
-    { expiresIn: process.env.JWT_REFRESH_TOKEN_EXPIRY }
+    { expiresIn: process.env.JWT_REFRESH_TOKEN_EXPIRY },
   );
   // Set access token to cookies
   const cookie_option_access = {
@@ -88,8 +88,8 @@ export const user_login = async_handler(async (req, res) => {
           is_verified: user.is_verified,
         },
       },
-      "User login successfully"
-    )
+      "User login successfully",
+    ),
   );
 });
 
@@ -119,8 +119,8 @@ export const user_profile = async_handler(async (req, res) => {
           avatar: is_user.avatar_url,
         },
       },
-      "User is authentic"
-    )
+      "User is authentic",
+    ),
   );
 });
 

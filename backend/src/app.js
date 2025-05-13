@@ -22,20 +22,20 @@ app.use(
     methods: ["GET", "POST", "DELETE", "UPDATE", "OPTIONS"],
     allowedHeaders: ["Content-Type", "Authorization"],
     credentials: true,
-  })
+  }),
 );
 
 // Middlewares
 app.use(
   express.json({
     limit: "16kb",
-  })
+  }),
 );
 app.use(
   express.urlencoded({
     extended: true,
     limit: "16kb",
-  })
+  }),
 );
 app.use(cookieParser());
 

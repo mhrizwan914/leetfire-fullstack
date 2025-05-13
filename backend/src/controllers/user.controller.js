@@ -50,13 +50,13 @@ export const user_register = async_handler(async (req, res) => {
       subject: "Verification Email",
       body: generate_email_verification_body(
         user.username,
-        `http://localhost:8000/api/v1/user/verify/${token.un_hash_token}`
+        `http://localhost:8000/api/v1/user/verify/${token.un_hash_token}`,
       ),
     });
     return res
       .status(201)
       .json(
-        new api_response(201, {}, "User registered successfully and verification email is sent")
+        new api_response(201, {}, "User registered successfully and verification email is sent"),
       );
   } catch (error) {
     throw new api_error(202, "User registered, but failed to send verification email.", error);
