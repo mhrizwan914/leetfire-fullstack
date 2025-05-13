@@ -19,7 +19,7 @@ const routes = Router();
 routes.route("/create").post(auth_middleware, playlist_create);
 
 // Add List
-routes.route("/add").post(auth_middleware, playlist_add_problem);
+routes.route("/add/:id").post(auth_middleware, playlist_add_problem);
 
 // Remove List
 routes.route("/remove/:id").post(auth_middleware, playlist_remove_problem);
