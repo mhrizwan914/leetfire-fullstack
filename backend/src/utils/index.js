@@ -14,6 +14,7 @@ import send_mail, {
   generate_email_verification_body,
   generate_forgot_password_body,
 } from "./send_mail.js";
+import uptime_formater from "./uptime_formater.js";
 
 export {
   api_error,
@@ -29,4 +30,5 @@ export {
   send_mail,
   generate_email_verification_body,
   generate_forgot_password_body,
+  uptime_formater,
 };
