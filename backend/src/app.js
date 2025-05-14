@@ -6,6 +6,8 @@ import cookieParser from "cookie-parser";
 import dotenv from "dotenv";
 // Cors
 import cors from "cors";
+// Middlewares
+import rate_limit from "./middlewares/rate_limit.middleware.js";
 
 // Config dotenv
 dotenv.config({
@@ -38,6 +40,8 @@ app.use(
   }),
 );
 app.use(cookieParser());
+
+app.use(rate_limit);
 
 // Export
 export default app;
