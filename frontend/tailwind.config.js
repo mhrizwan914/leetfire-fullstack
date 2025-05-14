@@ -1,9 +1,28 @@
 /** @type {import('tailwindcss').Config} */
+import { fontFamily } from "tailwindcss/defaultTheme";
+
 export default {
   darkMode: ["class"],
   content: ["./index.html", "./src/**/*.{js,ts,jsx,tsx}"],
   theme: {
+    container: {
+      center: "true",
+      padding: "0.5rem",
+    },
+    screens: {
+      "xs": {
+        "max": "576px",
+      },
+      "sm": "576px",
+      "md": "768px",
+      "lg": "992px",
+      "xl": "1200px",
+      "2xl": "1400px",
+    },
     extend: {
+      fontFamily: {
+        sans: ["JetBrains Mono", "monospace", ...fontFamily.sans],
+      },
       borderRadius: {
         lg: "var(--radius)",
         md: "calc(var(--radius) - 2px)",
