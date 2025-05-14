@@ -6,7 +6,7 @@ import { Home_Page, Login_Page, Signup_Page, Dashboard_Page } from "@/pages/inde
 import Available_Routes from "./config/available_routes";
 
 export default function App() {
-  let authorized = false;
+  let auth_user = null;
   return (
     <>
       <Routes>
@@ -15,7 +15,7 @@ export default function App() {
         <Route path={Available_Routes.Signup_Page} element={<Signup_Page />} />
         <Route
           path={Available_Routes.Dashboard_Page}
-          element={authorized ? <Dashboard_Page /> : <Navigate to={Available_Routes.Login_Page} />}
+          element={auth_user ? <Dashboard_Page /> : <Navigate to={Available_Routes.Login_Page} />}
         />
       </Routes>
     </>
