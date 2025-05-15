@@ -21,12 +21,12 @@ import { useState } from "react";
 // Shadcn ui
 import { useToast } from "@/hooks/use-toast";
 // Store
-import { use_auth_store } from "@/store/use_auth_store";
+import { use_user_store } from "@/store/use_user_store";
 
 export default function Signup_Page() {
   const [toggle_password, set_toggle_password] = useState(false);
   const { toast } = useToast();
-  const { signup, is_signing } = use_auth_store();
+  const { signup, is_signing } = use_user_store();
 
   const form = useForm({
     resolver: zodResolver(signup_schema),

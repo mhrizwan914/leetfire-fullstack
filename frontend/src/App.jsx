@@ -17,8 +17,14 @@ export default function App() {
       <Toaster />
       <Routes>
         <Route path={Available_Routes.Home_Page} element={<Home_Page />} />
-        <Route path={Available_Routes.Login_Page} element={<Login_Page />} />
-        <Route path={Available_Routes.Signup_Page} element={<Signup_Page />} />
+        <Route
+          path={Available_Routes.Login_Page}
+          element={!auth_user ? <Login_Page /> : <Navigate to={Available_Routes.Dashboard_Page} />}
+        />
+        <Route
+          path={Available_Routes.Signup_Page}
+          element={!auth_user ? <Signup_Page /> : <Navigate to={Available_Routes.Dashboard_Page} />}
+        />
         <Route
           path={Available_Routes.Dashboard_Page}
           element={auth_user ? <Dashboard_Page /> : <Navigate to={Available_Routes.Login_Page} />}

@@ -3,18 +3,17 @@ import { create } from "zustand";
 // Config
 import { axios_instance } from "@/config/axios";
 
-export const use_auth_store = create((set) => ({
-  auth_user: false,
-  is_logging: false,
+export const use_user_store = create((set) => ({
+  is_signing: false,
 
-  login: async function (body) {
-    set({ is_logging: true });
+  signup: async function (body) {
+    set({ is_signing: true });
     try {
-      const { data } = await axios_instance.post("/auth/login", JSON.stringify(body));
-      set({ is_logging: false, auth_user: data.data });
+      const { data } = await axios_instance.post("/user/register", JSON.stringify(body));
+      set({ is_signing: false });
       return data;
     } catch (error) {
-      set({ is_logging: false });
+      set({ is_signing: false });
       if (error.code === "ECONNABORTED") {
         throw {
           status_code: 408,
