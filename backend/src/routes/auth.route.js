@@ -11,7 +11,7 @@ import auth_middleware from "../middlewares/auth.middleware.js";
 const routes = Router();
 
 // Login
-routes.route("/login").get(user_login_validator(), validator_middleware, user_login);
+routes.route("/login").post(user_login_validator(), validator_middleware, user_login);
 
 // Profile
 routes.route("/profile").get(auth_middleware, user_profile);

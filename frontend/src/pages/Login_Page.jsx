@@ -4,7 +4,6 @@ import { useForm } from "react-hook-form";
 import {
   Form,
   FormControl,
-  FormDescription,
   FormField,
   FormItem,
   FormLabel,
@@ -18,9 +17,15 @@ import { login_schema } from "@/config/forms_schema";
 import { EyeIcon, EyeOffIcon } from "lucide-react";
 // React
 import { useState } from "react";
+// Store
+import { use_auth_store } from "@/store/use_auth_store";
+// Shadcn ui
+import { useToast } from "@/hooks/use-toast";
 
 export default function Login_Page() {
+  const { login } = use_auth_store();
   const [toggle_password, set_toggle_password] = useState(false);
+  const { toast } = useToast();
 
   const form = useForm({
     resolver: zodResolver(login_schema),
@@ -30,8 +35,46 @@ export default function Login_Page() {
     },
   });
 
-  function onSubmit(values) {
-    console.log(values);
+  async function onSubmit(values) {
+    try {
+      const data = await login(values);
+      toast({
+        title: "User login successfully",
+        description: (
+          <pre>
+            <code>
+              {JSON.stringify(
+                data,
+                (key, value) => {
+                  if (key === "data") return undefined;
+                  return value;
+                },
+                2,
+              )}
+            </code>
+          </pre>
+        ),
+      });
+    } catch (error) {
+      toast({
+        variant: "destructive",
+        title: "You are facing this issues",
+        description: (
+          <pre>
+            <code>
+              {JSON.stringify(
+                error?.response.data,
+                (key, value) => {
+                  if (key === "stack") return undefined;
+                  return value;
+                },
+                2,
+              )}
+            </code>
+          </pre>
+        ),
+      });
+    }
   }
   return (
     <section>

@@ -18,9 +18,15 @@ import { signup_schema } from "@/config/forms_schema";
 import { EyeIcon, EyeOffIcon } from "lucide-react";
 // React
 import { useState } from "react";
+// Shadcn ui
+import { useToast } from "@/hooks/use-toast";
+// Store
+import { use_auth_store } from "@/store/use_auth_store";
 
 export default function Signup_Page() {
   const [toggle_password, set_toggle_password] = useState(false);
+  const { toast } = useToast();
+  const { signup } = use_auth_store();
 
   const form = useForm({
     resolver: zodResolver(signup_schema),
@@ -31,8 +37,46 @@ export default function Signup_Page() {
     },
   });
 
-  function onSubmit(values) {
-    console.log(values);
+  async function onSubmit(values) {
+    try {
+      const data = await signup(values);
+      toast({
+        title: "User register successfully",
+        description: (
+          <pre>
+            <code>
+              {JSON.stringify(
+                data,
+                (key, value) => {
+                  if (key === "data") return undefined;
+                  return value;
+                },
+                2,
+              )}
+            </code>
+          </pre>
+        ),
+      });
+    } catch (error) {
+      toast({
+        variant: "destructive",
+        title: "You are facing this issues",
+        description: (
+          <pre>
+            <code>
+              {JSON.stringify(
+                error?.response.data,
+                (key, value) => {
+                  if (key === "stack") return undefined;
+                  return value;
+                },
+                2,
+              )}
+            </code>
+          </pre>
+        ),
+      });
+    }
   }
   return (
     <section>

@@ -4,11 +4,17 @@ import { Routes, Route, Navigate } from "react-router";
 import { Home_Page, Login_Page, Signup_Page, Dashboard_Page } from "@/pages/index";
 // All avaailable routes
 import Available_Routes from "./config/available_routes";
+// Shadcn ui
+import { Toaster } from "@/components/ui/toaster";
+// Store
+import { use_auth_store } from "./store/use_auth_store";
 
 export default function App() {
-  let auth_user = null;
+  const { auth_user } = use_auth_store();
+
   return (
     <>
+      <Toaster />
       <Routes>
         <Route path={Available_Routes.Home_Page} element={<Home_Page />} />
         <Route path={Available_Routes.Login_Page} element={<Login_Page />} />
