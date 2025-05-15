@@ -26,7 +26,7 @@ import { use_auth_store } from "@/store/use_auth_store";
 export default function Signup_Page() {
   const [toggle_password, set_toggle_password] = useState(false);
   const { toast } = useToast();
-  const { signup } = use_auth_store();
+  const { signup, is_signing } = use_auth_store();
 
   const form = useForm({
     resolver: zodResolver(signup_schema),
@@ -65,7 +65,7 @@ export default function Signup_Page() {
           <pre>
             <code>
               {JSON.stringify(
-                error?.response.data,
+                error?.response?.data || error,
                 (key, value) => {
                   if (key === "stack") return undefined;
                   return value;
@@ -148,7 +148,9 @@ export default function Signup_Page() {
                       </FormItem>
                     )}
                   />
-                  <Button type="submit">Submit</Button>
+                  <Button disabled={is_signing} type="submit">
+                    Submit
+                  </Button>
                 </form>
               </Form>
             </div>

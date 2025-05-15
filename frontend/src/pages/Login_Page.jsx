@@ -21,11 +21,14 @@ import { useState } from "react";
 import { use_auth_store } from "@/store/use_auth_store";
 // Shadcn ui
 import { useToast } from "@/hooks/use-toast";
+// React router
+import { useNavigate } from "react-router";
 
 export default function Login_Page() {
-  const { login } = use_auth_store();
+  const { login, is_logging } = use_auth_store();
   const [toggle_password, set_toggle_password] = useState(false);
   const { toast } = useToast();
+  const navigate = useNavigate();
 
   const form = useForm({
     resolver: zodResolver(login_schema),
@@ -38,6 +41,7 @@ export default function Login_Page() {
   async function onSubmit(values) {
     try {
       const data = await login(values);
+      navigate("/dashboard");
       toast({
         title: "User login successfully",
         description: (
@@ -58,12 +62,12 @@ export default function Login_Page() {
     } catch (error) {
       toast({
         variant: "destructive",
-        title: "You are facing this issues",
+        title: "You are facing issue",
         description: (
           <pre>
             <code>
               {JSON.stringify(
-                error?.response.data,
+                error?.response?.data || error,
                 (key, value) => {
                   if (key === "stack") return undefined;
                   return value;
@@ -132,7 +136,9 @@ export default function Login_Page() {
                       </FormItem>
                     )}
                   />
-                  <Button type="submit">Login</Button>
+                  <Button disabled={is_logging} type="submit">
+                    Login
+                  </Button>
                 </form>
               </Form>
             </div>
