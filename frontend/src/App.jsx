@@ -6,12 +6,13 @@ import { Home_Page, Login_Page, Signup_Page, Dashboard_Page } from "@/pages/inde
 import Available_Routes from "./config/available_routes";
 // Shadcn ui
 import { Toaster } from "@/components/ui/toaster";
+// Layouts
+import { Protected_Layout } from "./layouts";
 // Store
 import { use_auth_store } from "./store/use_auth_store";
 
 export default function App() {
   const { auth_user } = use_auth_store();
-
   return (
     <>
       <Toaster />
@@ -25,10 +26,9 @@ export default function App() {
           path={Available_Routes.Signup_Page}
           element={!auth_user ? <Signup_Page /> : <Navigate to={Available_Routes.Dashboard_Page} />}
         />
-        <Route
-          path={Available_Routes.Dashboard_Page}
-          element={auth_user ? <Dashboard_Page /> : <Navigate to={Available_Routes.Login_Page} />}
-        />
+        <Route path={Available_Routes.Dashboard_Page} element={<Protected_Layout />}>
+          <Route index element={<Dashboard_Page />} />
+        </Route>
       </Routes>
     </>
   );
