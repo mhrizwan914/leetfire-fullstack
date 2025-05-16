@@ -14,18 +14,21 @@ import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { useToast } from "@/hooks/use-toast";
 // Forms schema
-import { signup_schema } from "@/config/forms_schema";
+import { signup_schema } from "@/utils/forms_schema";
 // Icons
 import { EyeIcon, EyeOffIcon } from "lucide-react";
 // React
 import { useState } from "react";
 // Store
 import { use_user_store } from "@/store/use_user_store";
+// React router
+import { Link, useNavigate } from "react-router";
 
 export default function Signup_Page() {
   const [toggle_password, set_toggle_password] = useState(false);
   const { toast } = useToast();
   const { signup, is_signing } = use_user_store();
+  const navigate = useNavigate();
 
   const form = useForm({
     resolver: zodResolver(signup_schema),
@@ -39,6 +42,7 @@ export default function Signup_Page() {
   async function onSubmit(values) {
     try {
       const data = await signup(values);
+      navigate("/login", { replace: true });
       toast({
         title: "User register successfully",
         description: (
@@ -83,7 +87,7 @@ export default function Signup_Page() {
         <div className="container">
           <div>
             <h2 className="text-3xl font-bold leading-tight text-center">Signup</h2>
-            <div className="dark:bg-white/80 p-5 rounded-md bg-black/80 max-w-[500px] mx-auto mt-5">
+            <div className="dark:bg-white/80 p-5 rounded-md bg-black/80 max-w-[500px] mx-auto my-5">
               <Form {...form}>
                 <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-5">
                   <FormField
@@ -153,6 +157,12 @@ export default function Signup_Page() {
                 </form>
               </Form>
             </div>
+            <p className="text-center">
+              Already have an account? please{" "}
+              <Link className="underline underline-offset-2 text-primary/80" to="/login">
+                login
+              </Link>
+            </p>
           </div>
         </div>
       </div>

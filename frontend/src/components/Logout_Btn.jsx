@@ -3,8 +3,6 @@ import { Button } from "@/components/ui/button";
 import { useToast } from "@/hooks/use-toast";
 // Store
 import { use_auth_store } from "@/store/use_auth_store";
-// Config
-import Available_Routes from "@/config/available_routes";
 // React router
 import { useNavigate } from "react-router";
 
@@ -16,7 +14,7 @@ export default function Logout_Btn() {
   const handle_logout = async () => {
     try {
       const data = await logout();
-      navigate(Available_Routes.Login_Page, { replace: true });
+      navigate("/login", { replace: true });
       toast({
         title: "User logout successfully",
         description: (

@@ -2,14 +2,13 @@
 import { create } from "zustand";
 import { persist } from "zustand/middleware";
 // Config
-import { axios_instance } from "@/config/axios";
+import { axios_instance } from "@/utils/axios";
 
 export const use_auth_store = create(
   persist(
     (set) => ({
       auth_user: false,
       is_logging: false,
-      is_auth_checking: false,
 
       login: async function (body) {
         set({ is_logging: true });
@@ -31,15 +30,12 @@ export const use_auth_store = create(
       },
 
       auth_check: async function () {
-        set({ is_auth_checking: true });
         try {
           const { data } = await axios_instance.get("/auth/profile");
           set({ auth_user: data.data });
         } catch (error) {
           set({ auth_user: false });
           throw error;
-        } finally {
-          set({ is_auth_checking: false });
         }
       },
 
