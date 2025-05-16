@@ -12,14 +12,13 @@ import {
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
+import { useToast } from "@/hooks/use-toast";
 // Forms schema
 import { signup_schema } from "@/config/forms_schema";
 // Icons
 import { EyeIcon, EyeOffIcon } from "lucide-react";
 // React
 import { useState } from "react";
-// Shadcn ui
-import { useToast } from "@/hooks/use-toast";
 // Store
 import { use_user_store } from "@/store/use_user_store";
 
