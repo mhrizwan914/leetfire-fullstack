@@ -21,7 +21,7 @@ import { useState } from "react";
 // Store
 import { use_auth_store } from "@/store/use_auth_store";
 // React router
-import { Link, replace, useNavigate } from "react-router";
+import { Link, useNavigate } from "react-router";
 
 export default function Login_Page() {
   const { login, is_logging } = use_auth_store();

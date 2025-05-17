@@ -20,14 +20,14 @@ export default function Navbar() {
       <div className="dark:bg-white/80 bg-black/80 dark:text-black/80 text-white/80 py-2">
         <div className="container">
           <div className="flex justify-between items-center">
-            <Link className="font-bold text-xl" to="/">
+            <Link className="font-bold text-xl" to="/dashboard">
               Leet Lab
             </Link>
             <div className="flex items-center gap-5">
               {auth_user?.user?.role === "admin" ? (
                 <Menubar>
                   <MenubarMenu>
-                    <MenubarTrigger>Menu</MenubarTrigger>
+                    <MenubarTrigger>Profile</MenubarTrigger>
                     <MenubarContent>
                       <MenubarItem>
                         <Link to="/dashboard/create-problem">Create Problem</Link>
