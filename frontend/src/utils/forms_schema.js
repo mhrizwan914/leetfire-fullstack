@@ -59,4 +59,40 @@ export const create_problem_schema = z.object({
     .refine((tags) => tags.every((tag) => isNaN(Number(tag))), {
       message: "Tags must include text, not just numbers",
     }),
+  constraints: z.string().trim().nonempty({ message: "Constraints is required" }),
+  hints: z.string().trim().optional(),
+  editorial: z.string().trim().optional(),
+  test_cases: z.array(
+    z.object({
+      input: z.string().min(1, "Input is required"),
+      output: z.string().min(1, "Output is required"),
+    }),
+  ),
+  examples: z.object({
+    JAVASCRIPT: z.object({
+      input: z.string().min(1, "Input is required"),
+      output: z.string().min(1, "Output is required"),
+      explanation: z.string().optional(),
+    }),
+    PYTHON: z.object({
+      input: z.string().min(1, "Input is required"),
+      output: z.string().min(1, "Output is required"),
+      explanation: z.string().optional(),
+    }),
+    JAVA: z.object({
+      input: z.string().min(1, "Input is required"),
+      output: z.string().min(1, "Output is required"),
+      explanation: z.string().optional(),
+    }),
+  }),
+  code_snippets: z.object({
+    JAVASCRIPT: z.string().min(1, "JavaScript code snippet is required"),
+    PYTHON: z.string().min(1, "Python code snippet is required"),
+    JAVA: z.string().min(1, "Java solution is required"),
+  }),
+  reference_solutions: z.object({
+    JAVASCRIPT: z.string().min(1, "JavaScript solution is required"),
+    PYTHON: z.string().min(1, "Python solution is required"),
+    JAVA: z.string().min(1, "Java solution is required"),
+  }),
 });

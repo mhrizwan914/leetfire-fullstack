@@ -35,8 +35,7 @@ export default function Auth_Guard({ children }) {
     }
   };
   useEffect(() => {
-    if (!auth_user) handle_auth_check();
-    console.log(document.cookie);
+    handle_auth_check();
   }, [auth_check]);
 
   if (!auth_user) {
