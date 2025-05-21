@@ -322,7 +322,6 @@ export default function Create_Problem_Page() {
     fields: test_cases_fields,
     append: test_cases_append,
     remove: test_cases_remove,
-    replace: test_cases_replace,
   } = useFieldArray({
     control,
     name: "test_cases",
@@ -334,11 +333,9 @@ export default function Create_Problem_Page() {
     });
   };
   async function onSubmit(values) {
-    console.log(values);
-
     try {
       const data = await problem_create(values);
-      // navigate("/dashboard", { replace: true });
+      navigate("/dashboard", { replace: true });
       toast({
         title: "Problem is created successfully",
         description: (
@@ -347,7 +344,7 @@ export default function Create_Problem_Page() {
               {JSON.stringify(
                 data,
                 (key, value) => {
-                  if (key === "data") return undefined;
+                  if (key === "problem") return undefined;
                   return value;
                 },
                 2,
@@ -382,7 +379,7 @@ export default function Create_Problem_Page() {
       <section>
         <div className="py-5">
           <div className="container">
-            <h2 className="font-bold text-2xl text-center">Create a Problem</h2>
+            <h2 className="font-bold text-2xl text-center">Create Problem</h2>
             <Button type="button" onClick={() => handle_load_sample_data()}>
               Load Sample Data
             </Button>
@@ -425,7 +422,7 @@ export default function Create_Problem_Page() {
                     render={({ field }) => (
                       <FormItem>
                         <FormLabel>Difficulty</FormLabel>
-                        <Select onValueChange={field.onChange} defaultValue={field.value}>
+                        <Select value={field.value} onValueChange={field.onChange}>
                           <FormControl>
                             <SelectTrigger>
                               <SelectValue placeholder="Select a difficulty level of problem" />

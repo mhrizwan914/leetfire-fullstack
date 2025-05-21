@@ -82,7 +82,7 @@ export const problem_create = async_handler(async (req, res) => {
   // Send response
   return res
     .status(201)
-    .json(new api_response(201, "Problem is created successfully", { problem }));
+    .json(new api_response(201, { problem }, "Problem is created successfully"));
 });
 
 // All

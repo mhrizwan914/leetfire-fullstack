@@ -8,7 +8,7 @@ import { use_auth_store } from "@/store/use_auth_store";
 import { useEffect } from "react";
 
 export default function Auth_Guard({ children }) {
-  const { auth_user, auth_check } = use_auth_store();
+  const { auth_user, auth_check, is_auth_checking } = use_auth_store();
   const { toast } = useToast();
   const handle_auth_check = async () => {
     try {
@@ -35,8 +35,12 @@ export default function Auth_Guard({ children }) {
     }
   };
   useEffect(() => {
-    handle_auth_check();
+    if (!auth_user) handle_auth_check();
   }, [auth_check]);
+
+  if (auth_user === null) {
+    return "We are verifying you";
+  }
 
   if (!auth_user) {
     return <Navigate to="/login" replace />;
