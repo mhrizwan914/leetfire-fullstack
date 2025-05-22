@@ -19,7 +19,7 @@ const routes = Router();
 routes.route("/create").post(auth_middleware, admin_middleware, problem_create);
 
 // All
-routes.route("/all").get(problem_get_all);
+routes.route("/all").get(auth_middleware, problem_get_all);
 
 // Solved
 routes.route("/solved").get(auth_middleware, problem_solved);

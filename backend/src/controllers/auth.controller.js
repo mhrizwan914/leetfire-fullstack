@@ -82,6 +82,7 @@ export const user_login = async_handler(async (req, res) => {
       200,
       {
         user: {
+          id: user.id,
           username: user.username,
           email: user.email,
           role: user.role,
@@ -112,6 +113,7 @@ export const user_profile = async_handler(async (req, res) => {
       200,
       {
         user: {
+          id: is_user.id,
           username: is_user.username,
           email: is_user.email,
           role: is_user.role,

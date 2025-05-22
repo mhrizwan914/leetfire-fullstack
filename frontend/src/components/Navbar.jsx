@@ -21,10 +21,10 @@ export default function Navbar() {
         <div className="container">
           <div className="flex justify-between items-center">
             <Link className="font-bold text-xl" to="/dashboard">
-              Leet Lab
+              LeetLab
             </Link>
             <div className="flex items-center gap-5">
-              {auth_user?.user?.role === "admin" ? (
+              {auth_user?.role === "admin" ? (
                 <Menubar>
                   <MenubarMenu>
                     <MenubarTrigger>Profile</MenubarTrigger>

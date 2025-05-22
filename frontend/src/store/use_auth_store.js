@@ -13,7 +13,7 @@ export const use_auth_store = create((set, get) => ({
     set({ is_logging: true });
     try {
       const { data } = await axios_instance.post("/auth/login", JSON.stringify(body));
-      set({ auth_user: data.data });
+      set({ auth_user: data.data.user });
       return data;
     } catch (error) {
       if (error.code === "ECONNABORTED") {
@@ -32,7 +32,7 @@ export const use_auth_store = create((set, get) => ({
     set({ is_auth_checking: true });
     try {
       const { data } = await axios_instance.get("/auth/profile");
-      set({ auth_user: data.data });
+      set({ auth_user: data.data.user });
     } catch (error) {
       set({ auth_user: false });
       throw error;
