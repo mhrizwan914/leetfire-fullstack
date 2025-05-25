@@ -40,45 +40,9 @@ export default function Signup_Page() {
   });
 
   async function onSubmit(values) {
-    try {
-      const data = await signup(values);
+    const status = await signup(values, toast);
+    if (status === 201 || status === 202) {
       navigate("/login", { replace: true });
-      toast({
-        title: "User register successfully",
-        description: (
-          <pre>
-            <code>
-              {JSON.stringify(
-                data,
-                (key, value) => {
-                  if (key === "data") return undefined;
-                  return value;
-                },
-                2,
-              )}
-            </code>
-          </pre>
-        ),
-      });
-    } catch (error) {
-      toast({
-        variant: "destructive",
-        title: "You are facing this issues",
-        description: (
-          <pre>
-            <code>
-              {JSON.stringify(
-                error?.response?.data || error,
-                (key, value) => {
-                  if (key === "stack") return undefined;
-                  return value;
-                },
-                2,
-              )}
-            </code>
-          </pre>
-        ),
-      });
     }
   }
   return (

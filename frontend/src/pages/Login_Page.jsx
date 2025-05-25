@@ -1,6 +1,7 @@
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 // Shadcn ui
+import { useToast } from "@/hooks/use-toast";
 import {
   Form,
   FormControl,
@@ -11,7 +12,6 @@ import {
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
-import { useToast } from "@/hooks/use-toast";
 // Forms schema
 import { login_schema } from "@/utils/forms_schema";
 // Icons
@@ -26,8 +26,8 @@ import { Link, useNavigate } from "react-router";
 export default function Login_Page() {
   const { login, is_logging } = use_auth_store();
   const [toggle_password, set_toggle_password] = useState(false);
-  const { toast } = useToast();
   const navigate = useNavigate();
+  const { toast } = useToast();
 
   const form = useForm({
     resolver: zodResolver(login_schema),
@@ -38,47 +38,12 @@ export default function Login_Page() {
   });
 
   async function onSubmit(values) {
-    try {
-      const data = await login(values);
+    const status = await login(values, toast);
+    if (status === 200) {
       navigate("/dashboard", { replace: true });
-      toast({
-        title: "User login successfully",
-        description: (
-          <pre>
-            <code>
-              {JSON.stringify(
-                data,
-                (key, value) => {
-                  if (key === "data") return undefined;
-                  return value;
-                },
-                2,
-              )}
-            </code>
-          </pre>
-        ),
-      });
-    } catch (error) {
-      toast({
-        variant: "destructive",
-        title: "You are facing issue",
-        description: (
-          <pre>
-            <code>
-              {JSON.stringify(
-                error?.response?.data || error,
-                (key, value) => {
-                  if (key === "stack") return undefined;
-                  return value;
-                },
-                2,
-              )}
-            </code>
-          </pre>
-        ),
-      });
     }
   }
+
   return (
     <section>
       <div className="py-20">

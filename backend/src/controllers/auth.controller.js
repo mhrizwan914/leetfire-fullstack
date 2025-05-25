@@ -24,12 +24,12 @@ export const user_login = async_handler(async (req, res) => {
     },
   });
   if (!user) {
-    throw new api_error(400, "User is not registered");
+    throw new api_error(401, "User is not registered");
   }
   // Check password
   const check_password = await verify_password(password, user?.password);
   if (!check_password) {
-    throw new api_error(400, "Email or Password not correct");
+    throw new api_error(401, "Email or Password not correct");
   }
   // Generate Access and Refresh Tokens
   const access_token = generate_jwt_token(

@@ -18,5 +18,5 @@ export default function validator_middleware(req, res, next) {
     });
   });
 
-  throw new api_error(403, "Requested data is not valid", extract_erros);
+  throw new api_error(400, "Requested data is not valid", extract_erros);
 }

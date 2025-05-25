@@ -1,59 +1,59 @@
 // Zustand
 import { create } from "zustand";
-import { persist } from "zustand/middleware";
 // Config
 import { axios_instance } from "@/utils/axios";
+// Utils
+import handle_axios_error from "@/utils/handle_axios_error";
 
 export const use_auth_store = create((set, get) => ({
   auth_user: null,
   is_logging: false,
-  is_auth_checking: false,
+  is_checking_auth: null,
 
-  login: async function (body) {
+  login: async function (body, toast) {
     set({ is_logging: true });
+
     try {
       const { data } = await axios_instance.post("/auth/login", JSON.stringify(body));
-      set({ auth_user: data.data.user });
-      return data;
+
+      set({ auth_user: data?.data?.user });
+
+      toast({ description: data?.message });
+
+      return data.status_code;
     } catch (error) {
-      if (error.code === "ECONNABORTED") {
-        throw {
-          status_code: 408,
-          message: "Server is taking too long to respond. Please try again later.",
-        };
-      }
-      throw error;
+      set({ auth_user: null });
+
+      return handle_axios_error(error, toast);
     } finally {
       set({ is_logging: false });
     }
   },
 
-  auth_check: async function () {
-    set({ is_auth_checking: true });
+  auth_check: async function (toast) {
+    set({ is_checking_auth: true });
+
     try {
       const { data } = await axios_instance.get("/auth/profile");
-      set({ auth_user: data.data.user });
+
+      set({ auth_user: data?.data?.user });
     } catch (error) {
-      set({ auth_user: false });
-      throw error;
+      set({ auth_user: null });
+
+      return handle_axios_error(error, toast);
     } finally {
-      set({ is_auth_checking: false });
+      set({ is_checking_auth: false });
     }
   },
 
-  logout: async function () {
+  logout: async function (toast) {
     try {
       const { data } = await axios_instance.get("/auth/logout");
-      set({ auth_user: null });
-      return data;
+      toast({ description: data?.message });
     } catch (error) {
-      if (error.code === "ECONNABORTED") {
-        throw {
-          status_code: 408,
-          message: "Server is taking too long to respond. Please try again later.",
-        };
-      }
-      throw error;
+      return handle_axios_error(error, toast);
+    } finally {
+      set({ auth_user: null });
     }
   },
 }));

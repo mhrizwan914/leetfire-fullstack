@@ -8,41 +8,28 @@ import { use_auth_store } from "@/store/use_auth_store";
 import { useEffect } from "react";
 
 export default function Auth_Guard({ children }) {
-  const { auth_user, auth_check } = use_auth_store();
+  const { auth_user, auth_check, is_checking_auth } = use_auth_store();
   const { toast } = useToast();
-  const handle_auth_check = async () => {
-    try {
-      await auth_check();
-    } catch (error) {
-      toast({
-        variant: "destructive",
-        title: "You are facing this issues",
-        description: (
-          <pre>
-            <code>
-              {JSON.stringify(
-                error?.response?.data || error,
-                (key, value) => {
-                  if (key === "stack") return undefined;
-                  return value;
-                },
-                2,
-              )}
-            </code>
-          </pre>
-        ),
-      });
-    }
-  };
-  useEffect(() => {
-    if (!auth_user) handle_auth_check();
-  }, [auth_check]);
 
-  if (auth_user === null) {
-    return "We are verifying you";
+  useEffect(() => {
+    if (!auth_user) {
+      console.log("I'm inside auth check useeffect");
+
+      auth_check(toast);
+    }
+  }, []);
+
+  if (is_checking_auth) {
+    console.log("I'm inside is auth checking");
+    return (
+      <div className="absolute z-50 inset-0 flex items-center justify-center">
+        We are verifying you
+      </div>
+    );
   }
 
-  if (!auth_user) {
+  if (!auth_user && is_checking_auth === false) {
+    console.log("I'm inside if auth user and checking complete");
     return <Navigate to="/login" replace />;
   }
 

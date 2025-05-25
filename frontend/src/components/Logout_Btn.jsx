@@ -12,37 +12,8 @@ export default function Logout_Btn() {
   const navigate = useNavigate();
 
   const handle_logout = async () => {
-    try {
-      const data = await logout();
-      navigate("/login", { replace: true });
-      toast({
-        title: "User logout successfully",
-        description: (
-          <pre>
-            <code>{JSON.stringify(data, null, 2)}</code>
-          </pre>
-        ),
-      });
-    } catch (error) {
-      toast({
-        variant: "destructive",
-        title: "You are facing this issues",
-        description: (
-          <pre>
-            <code>
-              {JSON.stringify(
-                error?.response?.data || error,
-                (key, value) => {
-                  if (key === "stack") return undefined;
-                  return value;
-                },
-                2,
-              )}
-            </code>
-          </pre>
-        ),
-      });
-    }
+    await logout(toast);
+    navigate("/login");
   };
 
   return <Button onClick={() => handle_logout()}>Logout</Button>;

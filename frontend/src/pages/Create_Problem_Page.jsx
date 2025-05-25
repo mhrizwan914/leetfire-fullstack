@@ -285,7 +285,7 @@ class Main {
 };
 
 export default function Create_Problem_Page() {
-  const { problem_create } = use_problem_store();
+  const { problem_create, is_problem_creating } = use_problem_store();
   const { toast } = useToast();
   const navigate = useNavigate();
 
@@ -333,45 +333,9 @@ export default function Create_Problem_Page() {
     });
   };
   async function onSubmit(values) {
-    try {
-      const data = await problem_create(values);
+    const status = await problem_create(values, toast);
+    if (status === 201) {
       navigate("/dashboard", { replace: true });
-      toast({
-        title: "Problem is created successfully",
-        description: (
-          <pre>
-            <code>
-              {JSON.stringify(
-                data,
-                (key, value) => {
-                  if (key === "problem") return undefined;
-                  return value;
-                },
-                2,
-              )}
-            </code>
-          </pre>
-        ),
-      });
-    } catch (error) {
-      toast({
-        variant: "destructive",
-        title: "You are facing issue",
-        description: (
-          <pre>
-            <code>
-              {JSON.stringify(
-                error?.response?.data || error,
-                (key, value) => {
-                  if (key === "stack") return undefined;
-                  return value;
-                },
-                2,
-              )}
-            </code>
-          </pre>
-        ),
-      });
     }
   }
   return (
@@ -666,7 +630,9 @@ export default function Create_Problem_Page() {
                       />
                     </div>
                   ))}
-                  <Button type="submit">Create a Problem</Button>
+                  <Button disabled={is_problem_creating} type="submit">
+                    Create a Problem
+                  </Button>
                 </form>
               </Form>
             </div>

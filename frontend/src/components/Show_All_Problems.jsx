@@ -4,7 +4,6 @@ import { use_auth_store } from "@/store/use_auth_store";
 // React
 import { useEffect } from "react";
 // Shadcn ui
-import { useToast } from "@/hooks/use-toast";
 import {
   Table,
   TableBody,
@@ -19,65 +18,41 @@ import { Badge } from "./ui/badge";
 import { Link } from "react-router";
 // Utils
 import capitalize_string from "@/utils/capitalize_string";
+// Icons
+import { CheckCircle, PenBox, Trash2 } from "lucide-react";
 
 export default function Show_All_Problems() {
   const { problem_get_all, all_problems, is_getting_all_problems } = use_problem_store();
   const { auth_user } = use_auth_store();
-  const { toast } = useToast();
-
-  const handle_problem_get_all = async () => {
-    try {
-      const data = await problem_get_all();
-      toast({
-        title: "All problems found successfully",
-        description: (
-          <pre>
-            <code>
-              {JSON.stringify(
-                data,
-                (key, value) => {
-                  if (key === "data") return undefined;
-                  return value;
-                },
-                2,
-              )}
-            </code>
-          </pre>
-        ),
-      });
-    } catch (error) {
-      toast({
-        variant: "destructive",
-        title: "You are facing issue",
-        description: (
-          <pre>
-            <code>
-              {JSON.stringify(
-                error?.response?.data || error,
-                (key, value) => {
-                  if (key === "stack") return undefined;
-                  return value;
-                },
-                2,
-              )}
-            </code>
-          </pre>
-        ),
-      });
-    }
-  };
 
   useEffect(() => {
-    if (!all_problems) handle_problem_get_all();
+    if (auth_user && auth_user.id) problem_get_all();
   }, []);
 
   if (is_getting_all_problems) {
-    return "We are fatching problems";
+    return (
+      <section>
+        <div className="pt-20 text-center">
+          <div className="container">
+            <div className="We are fatching problems">We are trying to display all problems</div>
+          </div>
+        </div>
+      </section>
+    );
   }
 
-  if (all_problems == null && !is_getting_all_problems) {
-    return "No problems found.";
+  if (!all_problems && !is_getting_all_problems) {
+    return (
+      <section>
+        <div className="pt-20 text-center">
+          <div className="container">
+            <div className="We are fatching problems">No problems found ☹</div>
+          </div>
+        </div>
+      </section>
+    );
   }
+
   return (
     <section>
       <div className="pt-20">
@@ -85,10 +60,10 @@ export default function Show_All_Problems() {
           <Table>
             <TableHeader>
               <TableRow>
-                <TableHead>Solved</TableHead>
                 <TableHead>Title</TableHead>
                 <TableHead>Difficulty</TableHead>
                 <TableHead>Topics</TableHead>
+                <TableHead>Solved</TableHead>
                 <TableHead>Action</TableHead>
               </TableRow>
             </TableHeader>
@@ -97,23 +72,38 @@ export default function Show_All_Problems() {
                 return (
                   <TableRow key={id}>
                     <TableCell>
-                      {capitalize_string(
-                        String(solved.some((user) => user.solved_by === auth_user.id)),
-                      )}
+                      <Link to={`/dashboard/problem/${id}`}>{title}</Link>
                     </TableCell>
-                    <TableCell>{title}</TableCell>
                     <TableCell>{capitalize_string(difficulty)}</TableCell>
                     <TableCell>
-                      {tags.map((e) => (
-                        <Badge key={e} variant="secondary">
-                          {capitalize_string(e)}
-                        </Badge>
-                      ))}
+                      <div className="flex gap-2">
+                        {tags.map((e) => (
+                          <Badge key={e} variant="secondary">
+                            {capitalize_string(e)}
+                          </Badge>
+                        ))}
+                      </div>
                     </TableCell>
                     <TableCell>
-                      <Button asChild>
-                        <Link to={id}>View</Link>
-                      </Button>
+                      {solved?.some((user) => user?.solved_by === auth_user?.id) ? (
+                        <CheckCircle className="w-5 h-5 text-green-600" />
+                      ) : (
+                        "❌"
+                      )}
+                    </TableCell>
+                    <TableCell>
+                      <div className="flex items-center gap-2">
+                        <Button variant="secondary" asChild>
+                          <Link to={id}>
+                            <PenBox className="w-5 h-5 text-green-600" />
+                          </Link>
+                        </Button>
+                        <Button variant="secondary" asChild>
+                          <Link to={id}>
+                            <Trash2 className="w-5 h-5 text-red-600" />
+                          </Link>
+                        </Button>
+                      </div>
                     </TableCell>
                   </TableRow>
                 );
