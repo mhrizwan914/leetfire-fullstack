@@ -30,16 +30,7 @@ import { useNavigate } from "react-router";
 // Editor
 import Editor from "@monaco-editor/react";
 // Icons
-import {
-  Plus,
-  Trash2,
-  Code2,
-  FileText,
-  Lightbulb,
-  BookOpen,
-  CheckCircle2,
-  Download,
-} from "lucide-react";
+import { Trash2, Code2 } from "lucide-react";
 
 const sample_data = {
   title: "Climbing Stairs",

@@ -1,39 +1,31 @@
 // Shadcn ui
-import {
-  Table,
-  TableBody,
-  TableCell,
-  TableHead,
-  TableHeader,
-  TableRow,
-} from "@/components/ui/table";
-import { Button } from "./ui/button";
+import { Table, TableBody, TableCell, TableRow } from "@/components/ui/table";
 import { Badge } from "./ui/badge";
 import { Checkbox } from "@/components/ui/checkbox";
 import { Input } from "./ui/input";
 import {
   Select,
   SelectContent,
-  SelectGroup,
   SelectItem,
-  SelectLabel,
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
-import { FormControl } from "./ui/form";
 // React
 import { Link } from "react-router";
 // Utils
 import capitalize_string from "@/utils/capitalize_string";
-// Icons
-import { CheckCircle, PenBox, Trash2 } from "lucide-react";
 // React
 import { useEffect, useMemo, useState } from "react";
+import Problem_Delete_Btn from "./Problem_Delete_Btn";
+import Problem_Edit_Btn from "./Problem_Edit_Btn";
+import Problem_Save_Btn from "./Problem_Save_Btn";
+import Problem_Table_Head from "./Problem_Table_Head";
+import Problem_Table_Pagination from "./Problem_Table_Pagination";
 
 export default function Problems_Table({ all_problems, auth_user }) {
   const [search, set_search] = useState("");
-  const [difficulty, set_difficulty] = useState("");
-  const [selected_tags, set_selected_tags] = useState("");
+  const [difficulty, set_difficulty] = useState("All");
+  const [selected_tags, set_selected_tags] = useState("All");
   const [current_page, set_current_page] = useState(1);
   const difficulties = ["easy", "medium", "hard"];
 
@@ -52,21 +44,25 @@ export default function Problems_Table({ all_problems, auth_user }) {
   const filtered_problems = useMemo(() => {
     return (all_problems || null)
       .filter((problem) => problem?.title?.toLowerCase()?.includes(search?.toLowerCase()))
-      .filter((problem) => (difficulty === "" ? true : problem?.difficulty === difficulty))
-      .filter((problem) => (selected_tags === "" ? true : problem?.tags?.includes(selected_tags)));
+      .filter((problem) => (difficulty === "All" ? true : problem?.difficulty === difficulty))
+      .filter((problem) =>
+        selected_tags === "All" ? true : problem?.tags?.includes(selected_tags),
+      );
   }, [search, difficulty, selected_tags]);
 
   const items_per_page = 5;
   const total_pages = Math.ceil(filtered_problems?.length / items_per_page);
 
   const paginated_problems = useMemo(() => {
-    console.log(filtered_problems?.length);
-
     return filtered_problems?.slice(
       (current_page - 1) * items_per_page,
       current_page * items_per_page,
     );
   }, [filtered_problems, current_page]);
+
+  useEffect(() => {
+    if (current_page > total_pages) set_current_page(1);
+  }, [search, difficulty, selected_tags]);
 
   return (
     <div>
@@ -83,6 +79,7 @@ export default function Problems_Table({ all_problems, auth_user }) {
             <SelectValue placeholder="Filter by difficulty level" />
           </SelectTrigger>
           <SelectContent>
+            <SelectItem value="All">All</SelectItem>
             {difficulties.map((e, i) => (
               <SelectItem key={i} value={e}>
                 {capitalize_string(e)}
@@ -95,6 +92,7 @@ export default function Problems_Table({ all_problems, auth_user }) {
             <SelectValue placeholder="Filter by tags" />
           </SelectTrigger>
           <SelectContent>
+            <SelectItem value="All">All</SelectItem>
             {all_tags.map((e, i) => (
               <SelectItem key={i} value={e}>
                 {capitalize_string(e)}
@@ -104,19 +102,18 @@ export default function Problems_Table({ all_problems, auth_user }) {
         </Select>
       </div>
       <Table>
-        <TableHeader>
-          <TableRow>
-            <TableHead>Title</TableHead>
-            <TableHead>Difficulty</TableHead>
-            <TableHead>Tags</TableHead>
-            <TableHead>Solved</TableHead>
-            {auth_user?.role === "admin" && <TableHead>Action</TableHead>}
-          </TableRow>
-        </TableHeader>
+        <Problem_Table_Head />
         <TableBody>
           {paginated_problems?.map(({ id, title, difficulty, tags, solved }) => {
             return (
               <TableRow key={id}>
+                <TableCell className="!pr-2">
+                  <Checkbox
+                    id="terms2"
+                    checked={solved?.some((user) => user?.solved_by === auth_user?.id)}
+                    readOnly
+                  />
+                </TableCell>
                 <TableCell>
                   <Link to={`/dashboard/problem/${id}`}>{title}</Link>
                 </TableCell>
@@ -130,49 +127,27 @@ export default function Problems_Table({ all_problems, auth_user }) {
                     ))}
                   </div>
                 </TableCell>
-                <TableCell className="!pr-2">
-                  <Checkbox
-                    id="terms2"
-                    checked={solved?.some((user) => user?.solved_by === auth_user?.id)}
-                    readOnly
-                  />
+                <TableCell>
+                  <div className="flex items-center gap-2">
+                    {auth_user?.role === "admin" && (
+                      <>
+                        <Problem_Delete_Btn id={id} />
+                        <Problem_Edit_Btn id={id} />
+                      </>
+                    )}
+                    <Problem_Save_Btn id={id} />
+                  </div>
                 </TableCell>
-                {auth_user?.role === "admin" && (
-                  <TableCell>
-                    <div className="flex items-center gap-2">
-                      <Button variant="secondary" asChild>
-                        <Link to={id}>
-                          <PenBox className="w-5 h-5 text-green-600" />
-                        </Link>
-                      </Button>
-                      <Button variant="secondary" asChild>
-                        <Link to={id}>
-                          <Trash2 className="w-5 h-5 text-red-600" />
-                        </Link>
-                      </Button>
-                    </div>
-                  </TableCell>
-                )}
               </TableRow>
             );
           })}
         </TableBody>
       </Table>
-      <div className="flex items-center justify-center gap-5 mt-10">
-        <Button
-          variant="outline"
-          disabled={current_page < 2}
-          onClick={() => set_current_page((prev) => prev - 1)}>
-          Prev
-        </Button>
-        {current_page} / {total_pages}
-        <Button
-          variant="outline"
-          disabled={current_page > total_pages - 1}
-          onClick={() => set_current_page((prev) => prev + 1)}>
-          Next
-        </Button>
-      </div>
+      <Problem_Table_Pagination
+        current_page={current_page}
+        total_pages={total_pages}
+        set_current_page={set_current_page}
+      />
     </div>
   );
 }
