@@ -12,7 +12,7 @@ import Auth_Admin_Guard from "@/utils/auth_admin_guard";
 import { use_auth_store } from "@/store/use_auth_store";
 
 export default function App_Routes() {
-  const { auth_user, is_checking_auth } = use_auth_store();
+  const { auth_user } = use_auth_store();
   const handle_parse_routes = (routes, is_private, is_admin) => {
     return routes.map((route) => ({
       path: route.path,
@@ -26,11 +26,7 @@ export default function App_Routes() {
     }));
   };
 
-  const public_routes_obj = handle_parse_routes(
-    public_routes(auth_user, is_checking_auth),
-    false,
-    false,
-  );
+  const public_routes_obj = handle_parse_routes(public_routes(auth_user), false, false);
   const private_routes_obj = handle_parse_routes(private_routes, true, false);
   const admin_routes_obj = handle_parse_routes(admin_routes, true, true);
   const fallback_routes_obj = handle_parse_routes(fallback_routes, false, false);

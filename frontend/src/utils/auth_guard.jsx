@@ -8,7 +8,7 @@ import { use_auth_store } from "@/store/use_auth_store";
 import { useEffect } from "react";
 
 export default function Auth_Guard({ children }) {
-  const { auth_user, auth_check, is_checking_auth } = use_auth_store();
+  const { auth_user, auth_check, is_checking_auth, logout } = use_auth_store();
   const { toast } = useToast();
 
   useEffect(() => {

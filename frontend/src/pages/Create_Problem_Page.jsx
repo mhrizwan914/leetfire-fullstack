@@ -335,7 +335,7 @@ export default function Create_Problem_Page() {
   async function onSubmit(values) {
     const status = await problem_create(values, toast);
     if (status === 201) {
-      navigate("/dashboard", { replace: true });
+      navigate("/dashboard");
     }
   }
   return (
