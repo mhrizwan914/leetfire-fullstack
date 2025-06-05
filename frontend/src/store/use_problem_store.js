@@ -1,5 +1,6 @@
 // Zustand
 import { create } from "zustand";
+import { persist, createJSONStorage } from "zustand/middleware";
 // Config
 import { axios_instance } from "@/utils/axios";
 // Utils
@@ -14,6 +15,7 @@ export const use_problem_store = create((set) => ({
   is_problem_creating: false,
   is_getting_problem: false,
   problem: null,
+  selected_problem: null,
 
   problem_create: async function (body, toast) {
     set({ is_problem_creating: true });
@@ -52,20 +54,27 @@ export const use_problem_store = create((set) => ({
         const { logout } = use_auth_store.getState();
         await logout(toast);
       }
+
       set({ all_problems: null });
     } finally {
       set({ is_getting_all_problems: false });
     }
   },
 
-  problem_get_by_id: async function (id) {
+  problem_get_by_id: async function (id, toast) {
     set({ is_getting_problem: true });
 
     try {
-      const { data } = await axios_instance.get("/problem/all");
+      const { data } = await axios_instance.get(`/problem/${id}`);
 
       set({ problem: data?.data?.problem });
     } catch (error) {
+      if (error?.response?.status === 401) {
+        const { logout } = use_auth_store.getState();
+        await logout(toast);
+        return;
+      }
+
       set({ problem: null });
     } finally {
       set({ is_getting_problem: false });

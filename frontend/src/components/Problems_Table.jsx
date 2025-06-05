@@ -10,12 +10,13 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
-// React
-import { Link } from "react-router";
+// React router
+import { Link, useNavigate } from "react-router";
 // Utils
 import capitalize_string from "@/utils/capitalize_string";
 // React
 import { useEffect, useMemo, useState } from "react";
+// Components
 import Problem_Delete_Btn from "./Problem_Delete_Btn";
 import Problem_Edit_Btn from "./Problem_Edit_Btn";
 import Problem_Save_Btn from "./Problem_Save_Btn";
@@ -104,7 +105,7 @@ export default function Problems_Table({ all_problems, auth_user }) {
       <Table>
         <Problem_Table_Head />
         <TableBody>
-          {paginated_problems?.map(({ id, title, difficulty, tags, solved }) => {
+          {paginated_problems?.map(({ id, title, difficulty, tags, solved }, index) => {
             return (
               <TableRow key={id}>
                 <TableCell className="!pr-2">

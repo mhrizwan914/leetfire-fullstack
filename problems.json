@@ -1,0 +1,502 @@
+[
+  {
+    "title": "Sum of Two Numbers",
+    "description": "Given two integers, return their sum.",
+    "difficulty": "easy",
+    "tags": ["Math", "Implementation"],
+    "constraints": "-1000000000 <= a, b <= 1000000000",
+    "hints": "Just add the two integers using the + operator.",
+    "editorial": "This is a basic math problem. You simply return the result of a + b.",
+    "test_cases": [
+      {
+        "input": "1 2",
+        "output": "3"
+      },
+      {
+        "input": "-5 7",
+        "output": "2"
+      },
+      {
+        "input": "1000000000 1000000000",
+        "output": "2000000000"
+      }
+    ],
+    "examples": {
+      "JAVASCRIPT": {
+        "input": "1 2",
+        "output": "3",
+        "explanation": "1 + 2 = 3"
+      },
+      "PYTHON": {
+        "input": "-5 7",
+        "output": "2",
+        "explanation": "-5 + 7 = 2"
+      },
+      "JAVA": {
+        "input": "1000000000 1000000000",
+        "output": "2000000000",
+        "explanation": "Handles large numbers correctly."
+      }
+    },
+    "code_snippets": {
+      "JAVASCRIPT": "const fs = require(\"fs\");\n\nfunction sum(a, b) {\n  // write your code here\n}\n\nconst input = fs.readFileSync(0, \"utf-8\").trim();\nconst [a, b] = input.split(\" \").map(Number);\nconsole.log(sum(a, b));",
+      "PYTHON": "def sum(a, b):\n    # write your code here\n    pass\n\ninput_str = input().strip()\na, b = map(int, input_str.split())\nprint(sum(a, b))",
+      "JAVA": "import java.util.Scanner;\n\npublic class Main {\n    public static int sum(int a, int b) {\n        // write your code here\n        return 0;\n    }\n\n    public static void main(String[] args) {\n        Scanner sc = new Scanner(System.in);\n        int a = sc.nextInt();\n        int b = sc.nextInt();\n        System.out.println(sum(a, b));\n    }\n}"
+    },
+    "reference_solutions": {
+      "JAVASCRIPT": "const fs = require(\"fs\");\n\nfunction sum(a, b) {\n  return a + b;\n}\n\nconst input = fs.readFileSync(0, \"utf-8\").trim();\nconst [a, b] = input.split(\" \").map(Number);\nconsole.log(sum(a, b));",
+      "PYTHON": "def sum(a, b):\n    return a + b\n\ninput_str = input().strip()\na, b = map(int, input_str.split())\nprint(sum(a, b))",
+      "JAVA": "import java.util.Scanner;\n\npublic class Main {\n    public static int sum(int a, int b) {\n        return a + b;\n    }\n\n    public static void main(String[] args) {\n        Scanner sc = new Scanner(System.in);\n        int a = sc.nextInt();\n        int b = sc.nextInt();\n        System.out.println(sum(a, b));\n    }\n}"
+    }
+  },
+  {
+    "title": "Find the Maximum",
+    "description": "Given a list of integers, find and return the maximum number.",
+    "difficulty": "easy",
+    "tags": ["Array", "Math", "Implementation"],
+    "constraints": "1 <= n <= 1000, -10^6 <= arr[i] <= 10^6",
+    "hints": "You can use a loop or a built-in method to find the maximum.",
+    "editorial": "",
+    "test_cases": [
+      {
+        "input": "1 5 2 9 3",
+        "output": "9"
+      },
+      {
+        "input": "-10 -20 -3 -4",
+        "output": "-3"
+      },
+      {
+        "input": "100",
+        "output": "100"
+      }
+    ],
+    "examples": {
+      "JAVASCRIPT": {
+        "input": "1 2 3 4 5",
+        "output": "5",
+        "explanation": "The maximum among [1,2,3,4,5] is 5."
+      },
+      "PYTHON": {
+        "input": "-1 -5 -3",
+        "output": "-1",
+        "explanation": "-1 is the maximum of the list."
+      },
+      "JAVA": {
+        "input": "10 20 30 5 15",
+        "output": "30",
+        "explanation": "30 is the highest value."
+      }
+    },
+    "code_snippets": {
+      "JAVASCRIPT": "const fs = require(\"fs\");\n\nfunction findMax(arr) {\n  // write your code here\n}\n\nconst input = fs.readFileSync(0, \"utf-8\").trim();\nconst arr = input.split(\" \").map(Number);\nconsole.log(findMax(arr));",
+      "PYTHON": "def find_max(arr):\n    # write your code here\n    pass\n\ninput_str = input().strip()\narr = list(map(int, input_str.split()))\nprint(find_max(arr))",
+      "JAVA": "import java.util.*;\n\npublic class Main {\n    public static int findMax(int[] arr) {\n        // write your code here\n        return 0;\n    }\n\n    public static void main(String[] args) {\n        Scanner sc = new Scanner(System.in);\n        String[] parts = sc.nextLine().trim().split(\" \");\n        int[] arr = new int[parts.length];\n        for (int i = 0; i < parts.length; i++) {\n            arr[i] = Integer.parseInt(parts[i]);\n        }\n        System.out.println(findMax(arr));\n    }\n}"
+    },
+    "reference_solutions": {
+      "JAVASCRIPT": "const fs = require(\"fs\");\n\nfunction findMax(arr) {\n  return Math.max(...arr);\n}\n\nconst input = fs.readFileSync(0, \"utf-8\").trim();\nconst arr = input.split(\" \").map(Number);\nconsole.log(findMax(arr));",
+      "PYTHON": "def find_max(arr):\n    return max(arr)\n\ninput_str = input().strip()\narr = list(map(int, input_str.split()))\nprint(find_max(arr))",
+      "JAVA": "import java.util.*;\n\npublic class Main {\n    public static int findMax(int[] arr) {\n        int max = arr[0];\n        for (int num : arr) {\n            if (num > max) max = num;\n        }\n        return max;\n    }\n\n    public static void main(String[] args) {\n        Scanner sc = new Scanner(System.in);\n        String[] parts = sc.nextLine().trim().split(\" \");\n        int[] arr = new int[parts.length];\n        for (int i = 0; i < parts.length; i++) {\n            arr[i] = Integer.parseInt(parts[i]);\n        }\n        System.out.println(findMax(arr));\n    }\n}"
+    }
+  },
+  {
+    "title": "Count Vowels",
+    "description": "Given a lowercase English string, count the number of vowels (a, e, i, o, u) in it.",
+    "difficulty": "easy",
+    "tags": ["String", "Loop"],
+    "constraints": "1 <= |s| <= 1000",
+    "hints": "Loop through each character and check if it's a vowel.",
+    "editorial": "",
+    "test_cases": [
+      {
+        "input": "hello",
+        "output": "2"
+      },
+      {
+        "input": "aeiou",
+        "output": "5"
+      },
+      {
+        "input": "xyz",
+        "output": "0"
+      }
+    ],
+    "examples": {
+      "JAVASCRIPT": {
+        "input": "banana",
+        "output": "3",
+        "explanation": "a appears 3 times"
+      },
+      "PYTHON": {
+        "input": "education",
+        "output": "5",
+        "explanation": "e, u, a, i, o are vowels"
+      },
+      "JAVA": {
+        "input": "rhythm",
+        "output": "0",
+        "explanation": "No vowels in 'rhythm'"
+      }
+    },
+    "code_snippets": {
+      "JAVASCRIPT": "const fs = require(\"fs\");\n\nfunction countVowels(s) {\n  // write your code here\n}\n\nconst s = fs.readFileSync(0, \"utf-8\").trim();\nconsole.log(countVowels(s));",
+      "PYTHON": "def count_vowels(s):\n    # write your code here\n    pass\n\ns = input().strip()\nprint(count_vowels(s))",
+      "JAVA": "import java.util.*;\n\npublic class Main {\n    public static int countVowels(String s) {\n        // write your code here\n        return 0;\n    }\n\n    public static void main(String[] args) {\n        Scanner sc = new Scanner(System.in);\n        String s = sc.nextLine().trim();\n        System.out.println(countVowels(s));\n    }\n}"
+    },
+    "reference_solutions": {
+      "JAVASCRIPT": "const fs = require(\"fs\");\n\nfunction countVowels(s) {\n  const vowels = new Set(['a', 'e', 'i', 'o', 'u']);\n  let count = 0;\n  for (let ch of s) {\n    if (vowels.has(ch)) count++;\n  }\n  return count;\n}\n\nconst s = fs.readFileSync(0, \"utf-8\").trim();\nconsole.log(countVowels(s));",
+      "PYTHON": "def count_vowels(s):\n    return sum(1 for ch in s if ch in 'aeiou')\n\ns = input().strip()\nprint(count_vowels(s))",
+      "JAVA": "import java.util.*;\n\npublic class Main {\n    public static int countVowels(String s) {\n        int count = 0;\n        for (char ch : s.toCharArray()) {\n            if (\"aeiou\".indexOf(ch) != -1) count++;\n        }\n        return count;\n    }\n\n    public static void main(String[] args) {\n        Scanner sc = new Scanner(System.in);\n        String s = sc.nextLine().trim();\n        System.out.println(countVowels(s));\n    }\n}"
+    }
+  },
+  {
+    "title": "Factorial of a Number",
+    "description": "Given a non-negative integer n, return the factorial of n (n!).",
+    "difficulty": "easy",
+    "tags": ["Math", "Recursion", "Loops"],
+    "constraints": "0 <= n <= 12",
+    "hints": "Use a loop or recursion to multiply numbers from 1 to n.",
+    "editorial": "Factorial of n is the product of all positive integers <= n. For n=0, factorial is 1.",
+    "test_cases": [
+      {
+        "input": "0",
+        "output": "1"
+      },
+      {
+        "input": "5",
+        "output": "120"
+      },
+      {
+        "input": "7",
+        "output": "5040"
+      }
+    ],
+    "examples": {
+      "JAVASCRIPT": {
+        "input": "4",
+        "output": "24",
+        "explanation": "4! = 4 * 3 * 2 * 1 = 24"
+      },
+      "PYTHON": {
+        "input": "3",
+        "output": "6",
+        "explanation": "3! = 3 * 2 * 1 = 6"
+      },
+      "JAVA": {
+        "input": "6",
+        "output": "720",
+        "explanation": "6! = 6 * 5 * 4 * 3 * 2 * 1 = 720"
+      }
+    },
+    "code_snippets": {
+      "JAVASCRIPT": "const fs = require(\"fs\");\n\nfunction factorial(n) {\n  // write your code here\n}\n\nconst n = parseInt(fs.readFileSync(0, \"utf-8\").trim());\nconsole.log(factorial(n));",
+      "PYTHON": "def factorial(n):\n    # write your code here\n    pass\n\nn = int(input().strip())\nprint(factorial(n))",
+      "JAVA": "import java.util.Scanner;\n\npublic class Main {\n    public static int factorial(int n) {\n        // write your code here\n        return 1;\n    }\n\n    public static void main(String[] args) {\n        Scanner sc = new Scanner(System.in);\n        int n = sc.nextInt();\n        System.out.println(factorial(n));\n    }\n}"
+    },
+    "reference_solutions": {
+      "JAVASCRIPT": "const fs = require(\"fs\");\n\nfunction factorial(n) {\n  let result = 1;\n  for(let i = 2; i <= n; i++) {\n    result *= i;\n  }\n  return result;\n}\n\nconst n = parseInt(fs.readFileSync(0, \"utf-8\").trim());\nconsole.log(factorial(n));",
+      "PYTHON": "def factorial(n):\n    result = 1\n    for i in range(2, n+1):\n        result *= i\n    return result\n\nn = int(input().strip())\nprint(factorial(n))",
+      "JAVA": "import java.util.Scanner;\n\npublic class Main {\n    public static int factorial(int n) {\n        int result = 1;\n        for(int i = 2; i <= n; i++) {\n            result *= i;\n        }\n        return result;\n    }\n\n    public static void main(String[] args) {\n        Scanner sc = new Scanner(System.in);\n        int n = sc.nextInt();\n        System.out.println(factorial(n));\n    }\n}"
+    }
+  },
+  {
+    "title": "Palindrome Check",
+    "description": "Given a string, check if it is a palindrome (reads the same backward as forward).",
+    "difficulty": "easy",
+    "tags": ["Strings", "Two Pointers", "Implementation"],
+    "constraints": "1 <= length of s <= 1000",
+    "hints": "Compare characters from start and end moving towards the center.",
+    "editorial": "A palindrome reads the same from left to right and right to left. Use two pointers or reverse the string and compare.",
+    "test_cases": [
+      {
+        "input": "racecar",
+        "output": "true"
+      },
+      {
+        "input": "hello",
+        "output": "false"
+      },
+      {
+        "input": "madam",
+        "output": "true"
+      }
+    ],
+    "examples": {
+      "JAVASCRIPT": {
+        "input": "level",
+        "output": "true",
+        "explanation": "'level' is a palindrome."
+      },
+      "PYTHON": {
+        "input": "world",
+        "output": "false",
+        "explanation": "'world' is not a palindrome."
+      },
+      "JAVA": {
+        "input": "deed",
+        "output": "true",
+        "explanation": "'deed' is a palindrome."
+      }
+    },
+    "code_snippets": {
+      "JAVASCRIPT": "const fs = require('fs');\n\nfunction isPalindrome(s) {\n  // write your code here\n}\n\nconst s = fs.readFileSync(0, 'utf-8').trim();\nconsole.log(isPalindrome(s));",
+      "PYTHON": "def is_palindrome(s):\n    # write your code here\n    pass\n\ns = input().strip()\nprint(is_palindrome(s))",
+      "JAVA": "import java.util.Scanner;\n\npublic class Main {\n    public static boolean isPalindrome(String s) {\n        // write your code here\n        return false;\n    }\n\n    public static void main(String[] args) {\n        Scanner sc = new Scanner(System.in);\n        String s = sc.nextLine();\n        System.out.println(isPalindrome(s));\n    }\n}"
+    },
+    "reference_solutions": {
+      "JAVASCRIPT": "const fs = require('fs');\n\nfunction isPalindrome(s) {\n  let left = 0, right = s.length - 1;\n  while (left < right) {\n    if (s[left] !== s[right]) return false;\n    left++;\n    right--;\n  }\n  return true;\n}\n\nconst s = fs.readFileSync(0, 'utf-8').trim();\nconsole.log(isPalindrome(s));",
+      "PYTHON": "def is_palindrome(s):\n    left, right = 0, len(s) - 1\n    while left < right:\n        if s[left] != s[right]:\n            return False\n        left += 1\n        right -= 1\n    return True\n\ns = input().strip()\nprint(str(is_palindrome(s)).lower())",
+      "JAVA": "import java.util.Scanner;\n\npublic class Main {\n    public static boolean isPalindrome(String s) {\n        int left = 0, right = s.length() - 1;\n        while (left < right) {\n            if (s.charAt(left) != s.charAt(right)) return false;\n            left++;\n            right--;\n        }\n        return true;\n    }\n\n    public static void main(String[] args) {\n        Scanner sc = new Scanner(System.in);\n        String s = sc.nextLine();\n        System.out.println(isPalindrome(s));\n    }\n}"
+    }
+  },
+  {
+    "title": "Find the Missing Number",
+    "description": "Given an array containing n distinct numbers taken from 0, 1, 2, ..., n, find the one that is missing from the array.",
+    "difficulty": "medium",
+    "tags": ["Array", "Math", "Bit Manipulation"],
+    "constraints": "1 <= n <= 10^5",
+    "hints": "Use the sum formula for first n natural numbers or XOR approach.",
+    "editorial": "The sum of numbers from 0 to n is n*(n+1)/2. Subtract the sum of given array from this to get the missing number. Alternatively, XOR all indices and numbers for an O(n) solution with O(1) space.",
+    "test_cases": [
+      {
+        "input": "3 0 1",
+        "output": "2"
+      },
+      {
+        "input": "9 6 4 2 3 5 7 0 1",
+        "output": "8"
+      },
+      {
+        "input": "0",
+        "output": "1"
+      }
+    ],
+    "examples": {
+      "JAVASCRIPT": {
+        "input": "3 0 1",
+        "output": "2",
+        "explanation": "Array of length 3 is missing 2."
+      },
+      "PYTHON": {
+        "input": "9 6 4 2 3 5 7 0 1",
+        "output": "8",
+        "explanation": "Array is missing 8."
+      },
+      "JAVA": {
+        "input": "0",
+        "output": "1",
+        "explanation": "Array has only 0, so missing number is 1."
+      }
+    },
+    "code_snippets": {
+      "JAVASCRIPT": "const fs = require('fs');\n\nfunction missingNumber(nums) {\n  // write your code here\n}\n\nconst input = fs.readFileSync(0, 'utf-8').trim().split(' ').map(Number);\nconsole.log(missingNumber(input));",
+      "PYTHON": "def missing_number(nums):\n    # write your code here\n    pass\n\nnums = list(map(int, input().strip().split()))\nprint(missing_number(nums))",
+      "JAVA": "import java.util.Scanner;\n\npublic class Main {\n    public static int missingNumber(int[] nums) {\n        // write your code here\n        return -1;\n    }\n\n    public static void main(String[] args) {\n        Scanner sc = new Scanner(System.in);\n        String[] inputStr = sc.nextLine().split(\" \");\n        int[] nums = new int[inputStr.length];\n        for (int i = 0; i < inputStr.length; i++) {\n            nums[i] = Integer.parseInt(inputStr[i]);\n        }\n        System.out.println(missingNumber(nums));\n    }\n}"
+    },
+    "reference_solutions": {
+      "JAVASCRIPT": "const fs = require('fs');\n\nfunction missingNumber(nums) {\n  const n = nums.length;\n  let total = (n * (n + 1)) / 2;\n  let sum = 0;\n  for (let num of nums) {\n    sum += num;\n  }\n  return total - sum;\n}\n\nconst input = fs.readFileSync(0, 'utf-8').trim().split(' ').map(Number);\nconsole.log(missingNumber(input));",
+      "PYTHON": "def missing_number(nums):\n    n = len(nums)\n    total = n * (n + 1) // 2\n    return total - sum(nums)\n\nnums = list(map(int, input().strip().split()))\nprint(missing_number(nums))",
+      "JAVA": "import java.util.Scanner;\n\npublic class Main {\n    public static int missingNumber(int[] nums) {\n        int n = nums.length;\n        int total = n * (n + 1) / 2;\n        int sum = 0;\n        for (int num : nums) {\n            sum += num;\n        }\n        return total - sum;\n    }\n\n    public static void main(String[] args) {\n        Scanner sc = new Scanner(System.in);\n        String[] inputStr = sc.nextLine().split(\" \");\n        int[] nums = new int[inputStr.length];\n        for (int i = 0; i < inputStr.length; i++) {\n            nums[i] = Integer.parseInt(inputStr[i]);\n        }\n        System.out.println(missingNumber(nums));\n    }\n}"
+    }
+  },
+  {
+    "title": "Longest Substring Without Repeating Characters",
+    "description": "Given a string, find the length of the longest substring without repeating characters.",
+    "difficulty": "hard",
+    "tags": ["Strings", "Sliding Window", "Hashing"],
+    "constraints": "1 <= length of s <= 10^5",
+    "hints": "Use a sliding window with a hash map to track characters and their positions.",
+    "editorial": "Use two pointers to maintain a sliding window and a set or hashmap to track characters seen. Move the right pointer to expand the window, and move the left pointer to remove duplicates, keeping track of max window length.",
+    "test_cases": [
+      {
+        "input": "abcabcbb",
+        "output": "3"
+      },
+      {
+        "input": "bbbbb",
+        "output": "1"
+      },
+      {
+        "input": "pwwkew",
+        "output": "3"
+      }
+    ],
+    "examples": {
+      "JAVASCRIPT": {
+        "input": "abcabcbb",
+        "output": "3",
+        "explanation": "The longest substring without repeating characters is 'abc' with length 3."
+      },
+      "PYTHON": {
+        "input": "bbbbb",
+        "output": "1",
+        "explanation": "The longest substring without repeating characters is 'b' with length 1."
+      },
+      "JAVA": {
+        "input": "pwwkew",
+        "output": "3",
+        "explanation": "The longest substring without repeating characters is 'wke' with length 3."
+      }
+    },
+    "code_snippets": {
+      "JAVASCRIPT": "const fs = require('fs');\n\nfunction lengthOfLongestSubstring(s) {\n  // write your code here\n}\n\nconst s = fs.readFileSync(0, 'utf-8').trim();\nconsole.log(lengthOfLongestSubstring(s));",
+      "PYTHON": "def length_of_longest_substring(s):\n    # write your code here\n    pass\n\ns = input().strip()\nprint(length_of_longest_substring(s))",
+      "JAVA": "import java.util.*;\n\npublic class Main {\n    public static int lengthOfLongestSubstring(String s) {\n        // write your code here\n        return 0;\n    }\n\n    public static void main(String[] args) {\n        Scanner sc = new Scanner(System.in);\n        String s = sc.nextLine();\n        System.out.println(lengthOfLongestSubstring(s));\n    }\n}"
+    },
+    "reference_solutions": {
+      "JAVASCRIPT": "const fs = require('fs');\n\nfunction lengthOfLongestSubstring(s) {\n  let map = new Map();\n  let left = 0, maxLen = 0;\n  for (let right = 0; right < s.length; right++) {\n    if (map.has(s[right])) {\n      left = Math.max(map.get(s[right]) + 1, left);\n    }\n    map.set(s[right], right);\n    maxLen = Math.max(maxLen, right - left + 1);\n  }\n  return maxLen;\n}\n\nconst s = fs.readFileSync(0, 'utf-8').trim();\nconsole.log(lengthOfLongestSubstring(s));",
+      "PYTHON": "def length_of_longest_substring(s):\n    char_index = {}\n    left = 0\n    max_len = 0\n    for right, char in enumerate(s):\n        if char in char_index and char_index[char] >= left:\n            left = char_index[char] + 1\n        char_index[char] = right\n        max_len = max(max_len, right - left + 1)\n    return max_len\n\ns = input().strip()\nprint(length_of_longest_substring(s))",
+      "JAVA": "import java.util.*;\n\npublic class Main {\n    public static int lengthOfLongestSubstring(String s) {\n        Map<Character, Integer> map = new HashMap<>();\n        int left = 0, maxLen = 0;\n        for (int right = 0; right < s.length(); right++) {\n            char c = s.charAt(right);\n            if (map.containsKey(c)) {\n                left = Math.max(map.get(c) + 1, left);\n            }\n            map.put(c, right);\n            maxLen = Math.max(maxLen, right - left + 1);\n        }\n        return maxLen;\n    }\n\n    public static void main(String[] args) {\n        Scanner sc = new Scanner(System.in);\n        String s = sc.nextLine();\n        System.out.println(lengthOfLongestSubstring(s));\n    }\n}"
+    }
+  },
+  {
+    "title": "Count Vowels in a String",
+    "description": "Given a string, count the number of vowels (a, e, i, o, u) in it. The string may contain both uppercase and lowercase letters.",
+    "difficulty": "easy",
+    "tags": ["Strings", "Implementation"],
+    "constraints": "1 <= length of s <= 10^4",
+    "hints": "Check each character and count if it's a vowel (case-insensitive).",
+    "editorial": "Iterate through the string and use a set of vowels to count the matching characters. Convert each character to lowercase for uniform comparison.",
+    "test_cases": [
+      {
+        "input": "hello",
+        "output": "2"
+      },
+      {
+        "input": "AEIOU",
+        "output": "5"
+      },
+      {
+        "input": "xyz",
+        "output": "0"
+      }
+    ],
+    "examples": {
+      "JAVASCRIPT": {
+        "input": "hello",
+        "output": "2",
+        "explanation": "The vowels are 'e' and 'o'."
+      },
+      "PYTHON": {
+        "input": "AEIOU",
+        "output": "5",
+        "explanation": "All characters are vowels."
+      },
+      "JAVA": {
+        "input": "xyz",
+        "output": "0",
+        "explanation": "No vowels present."
+      }
+    },
+    "code_snippets": {
+      "JAVASCRIPT": "const fs = require('fs');\n\nfunction countVowels(s) {\n  // write your code here\n}\n\nconst s = fs.readFileSync(0, 'utf-8').trim();\nconsole.log(countVowels(s));",
+      "PYTHON": "def count_vowels(s):\n    # write your code here\n    pass\n\ns = input().strip()\nprint(count_vowels(s))",
+      "JAVA": "import java.util.Scanner;\n\npublic class Main {\n    public static int countVowels(String s) {\n        // write your code here\n        return 0;\n    }\n\n    public static void main(String[] args) {\n        Scanner sc = new Scanner(System.in);\n        String s = sc.nextLine();\n        System.out.println(countVowels(s));\n    }\n}"
+    },
+    "reference_solutions": {
+      "JAVASCRIPT": "const fs = require('fs');\n\nfunction countVowels(s) {\n  const vowels = new Set(['a', 'e', 'i', 'o', 'u']);\n  let count = 0;\n  for (let char of s.toLowerCase()) {\n    if (vowels.has(char)) count++;\n  }\n  return count;\n}\n\nconst s = fs.readFileSync(0, 'utf-8').trim();\nconsole.log(countVowels(s));",
+      "PYTHON": "def count_vowels(s):\n    vowels = set('aeiou')\n    return sum(1 for c in s.lower() if c in vowels)\n\ns = input().strip()\nprint(count_vowels(s))",
+      "JAVA": "import java.util.Scanner;\n\npublic class Main {\n    public static int countVowels(String s) {\n        int count = 0;\n        String lower = s.toLowerCase();\n        for (char c : lower.toCharArray()) {\n            if (\"aeiou\".indexOf(c) != -1) count++;\n        }\n        return count;\n    }\n\n    public static void main(String[] args) {\n        Scanner sc = new Scanner(System.in);\n        String s = sc.nextLine();\n        System.out.println(countVowels(s));\n    }\n}"
+    }
+  },
+  {
+    "title": "Reverse a String",
+    "description": "Given a string, reverse it and return the reversed string.",
+    "difficulty": "easy",
+    "tags": ["Strings", "Implementation"],
+    "constraints": "1 <= length of s <= 10^5",
+    "hints": "You can use Python slicing or a loop to reverse the string.",
+    "editorial": "Reversing a string can be done using simple string manipulation techniques. You can either loop from the end or use language-specific features like slicing.",
+    "test_cases": [
+      {
+        "input": "hello",
+        "output": "olleh"
+      },
+      {
+        "input": "world",
+        "output": "dlrow"
+      },
+      {
+        "input": "abcde",
+        "output": "edcba"
+      }
+    ],
+    "examples": {
+      "JAVASCRIPT": {
+        "input": "hello",
+        "output": "olleh",
+        "explanation": "Reversing 'hello' results in 'olleh'."
+      },
+      "PYTHON": {
+        "input": "world",
+        "output": "dlrow",
+        "explanation": "Reversing 'world' results in 'dlrow'."
+      },
+      "JAVA": {
+        "input": "abcde",
+        "output": "edcba",
+        "explanation": "Reversing 'abcde' results in 'edcba'."
+      }
+    },
+    "code_snippets": {
+      "JAVASCRIPT": "const fs = require('fs');\n\nfunction reverseString(s) {\n  // write your code here\n}\n\nconst s = fs.readFileSync(0, 'utf-8').trim();\nconsole.log(reverseString(s));",
+      "PYTHON": "def reverse_string(s):\n    # write your code here\n    pass\n\ns = input().strip()\nprint(reverse_string(s))",
+      "JAVA": "import java.util.Scanner;\n\npublic class Main {\n    public static String reverseString(String s) {\n        // write your code here\n        return \"\";\n    }\n\n    public static void main(String[] args) {\n        Scanner sc = new Scanner(System.in);\n        String s = sc.nextLine();\n        System.out.println(reverseString(s));\n    }\n}"
+    },
+    "reference_solutions": {
+      "JAVASCRIPT": "const fs = require('fs');\n\nfunction reverseString(s) {\n  return s.split('').reverse().join('');\n}\n\nconst s = fs.readFileSync(0, 'utf-8').trim();\nconsole.log(reverseString(s));",
+      "PYTHON": "def reverse_string(s):\n    return s[::-1]\n\ns = input().strip()\nprint(reverse_string(s))",
+      "JAVA": "import java.util.Scanner;\n\npublic class Main {\n    public static String reverseString(String s) {\n        StringBuilder sb = new StringBuilder(s);\n        return sb.reverse().toString();\n    }\n\n    public static void main(String[] args) {\n        Scanner sc = new Scanner(System.in);\n        String s = sc.nextLine();\n        System.out.println(reverseString(s));\n    }\n}"
+    }
+  },
+  {
+    "title": "Count Vowels in a String",
+    "description": "Given a string, count the number of vowels (a, e, i, o, u) it contains.",
+    "difficulty": "easy",
+    "tags": ["Strings", "Implementation"],
+    "constraints": "1 <= length of s <= 10^5",
+    "hints": "You can iterate through the string and check for vowels.",
+    "editorial": "Iterating over the string and checking for vowels is a simple task. You can use an array or set to store vowels for constant time lookups.",
+    "test_cases": [
+      {
+        "input": "hello",
+        "output": "2"
+      },
+      {
+        "input": "aeiou",
+        "output": "5"
+      },
+      {
+        "input": "bcdfgh",
+        "output": "0"
+      }
+    ],
+    "examples": {
+      "JAVASCRIPT": {
+        "input": "hello",
+        "output": "2",
+        "explanation": "'hello' contains two vowels: 'e' and 'o'."
+      },
+      "PYTHON": {
+        "input": "aeiou",
+        "output": "5",
+        "explanation": "'aeiou' contains five vowels."
+      },
+      "JAVA": {
+        "input": "bcdfgh",
+        "output": "0",
+        "explanation": "'bcdfgh' contains no vowels."
+      }
+    },
+    "code_snippets": {
+      "JAVASCRIPT": "const fs = require('fs');\n\nfunction countVowels(s) {\n  // write your code here\n}\n\nconst s = fs.readFileSync(0, 'utf-8').trim();\nconsole.log(countVowels(s));",
+      "PYTHON": "def count_vowels(s):\n    # write your code here\n    pass\n\ns = input().strip()\nprint(count_vowels(s))",
+      "JAVA": "import java.util.Scanner;\n\npublic class Main {\n    public static int countVowels(String s) {\n        // write your code here\n        return 0;\n    }\n\n    public static void main(String[] args) {\n        Scanner sc = new Scanner(System.in);\n        String s = sc.nextLine();\n        System.out.println(countVowels(s));\n    }\n}"
+    },
+    "reference_solutions": {
+      "JAVASCRIPT": "const fs = require('fs');\n\nfunction countVowels(s) {\n  let count = 0;\n  const vowels = 'aeiouAEIOU';\n  for (let char of s) {\n    if (vowels.includes(char)) {\n      count++;\n    }\n  }\n  return count;\n}\n\nconst s = fs.readFileSync(0, 'utf-8').trim();\nconsole.log(countVowels(s));",
+      "PYTHON": "def count_vowels(s):\n    count = 0\n    vowels = 'aeiouAEIOU'\n    for char in s:\n        if char in vowels:\n            count += 1\n    return count\n\ns = input().strip()\nprint(count_vowels(s))",
+      "JAVA": "import java.util.Scanner;\n\npublic class Main {\n    public static int countVowels(String s) {\n        int count = 0;\n        String vowels = \"aeiouAEIOU\";\n        for (int i = 0; i < s.length(); i++) {\n            if (vowels.indexOf(s.charAt(i)) != -1) {\n                count++;\n            }\n        }\n        return count;\n    }\n\n    public static void main(String[] args) {\n        Scanner sc = new Scanner(System.in);\n        String s = sc.nextLine();\n        System.out.println(countVowels(s));\n    }\n}"
+    }
+  }
+]

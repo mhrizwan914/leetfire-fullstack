@@ -52,18 +52,20 @@ export const use_auth_store = create(
       logout: async function (toast) {
         try {
           const { data } = await axios_instance.get("/auth/logout");
+
           toast({ description: data?.message });
         } catch (error) {
           return handle_axios_error(error, toast);
         } finally {
           sessionStorage.removeItem("auth_user");
+
           set({ auth_user: null });
         }
       },
     }),
     {
       name: "auth_user",
-      storage: createJSONStorage(() => sessionStorage),
+      partialize: (state) => ({ auth_user: state.auth_user }),
     },
   ),
 );

@@ -1,14 +1,14 @@
 {
-  "name": "leetlab-backend",
+  "name": "leetfire-backend",
   "version": "1.0.0",
-  "description": "A product inspired by leet code",
+  "description": "A product inspired by leetcode",
   "main": "./src/index.js",
   "type": "module",
   "scripts": {
     "dev": "nodemon ./src/index.js"
   },
   "keywords": [
-    "Leet Code",
+    "leetcode",
     "Excecution Code"
   ],
   "author": "Muhammad Rizwan",

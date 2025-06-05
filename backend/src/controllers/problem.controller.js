@@ -116,6 +116,13 @@ export const problem_by_id = async_handler(async (req, res) => {
     where: {
       id,
     },
+    include: {
+      submissions: {
+        where: {
+          problem_id: id,
+        },
+      },
+    },
   });
   if (!is_problem) {
     throw new api_error(400, "No problem found");

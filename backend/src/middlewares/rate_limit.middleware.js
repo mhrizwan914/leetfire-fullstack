@@ -8,7 +8,7 @@ const request_logs = {};
 // Settings
 const WINDOW_SIZE_IN_MINUTES = 1;
 const WINDOW_SIZE_IN_SECONDS = 60;
-const MAX_REQUESTS = 5;
+const MAX_REQUESTS = 7;
 
 // Fixed Window
 // export default function rate_limit(req, res, next) {

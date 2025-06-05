@@ -48,8 +48,8 @@ export const problem_execution = async_handler(async (req, res) => {
   // Check in which test case has an issues
   let is_all_passed = true;
   const analized_result = final_results.map((result, i) => {
-    const stdout = result.stdout.trim();
-    const expected = expected_output[i].trim();
+    const stdout = result.stdout?.trim();
+    const expected = expected_output[i]?.trim();
 
     if (stdout !== expected) is_all_passed = false;
 

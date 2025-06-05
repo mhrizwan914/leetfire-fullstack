@@ -17,12 +17,12 @@ export default function Dashboard_Page() {
           <div className="container">
             <div>
               <h2 className="font-bold text-2xl text-center">
-                Welcome to the LeetLab! {auth_user && capitalize_string(auth_user.username)}
+                Welcome to the LeetFire! {auth_user && capitalize_string(auth_user.username)}
               </h2>
               <p className="text-center mt-5 max-w-[1100px] mx-auto">
-                Welcome to LeetLab! — your ultimate space for solving real-world coding challenges
+                Welcome to LeetFire! — your ultimate space for solving real-world coding challenges
                 inspired by LeetCode. Whether you're aiming for Big Tech interviews or just want to
-                level up your problem-solving skills, LeetLab is your companion for daily
+                level up your problem-solving skills, LeetFire is your companion for daily
                 challenges, guided solutions, and deep-dive explanations.
               </p>
               {auth_user && !auth_user.is_verified && (
