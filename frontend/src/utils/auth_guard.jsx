@@ -12,7 +12,7 @@ export default function Auth_Guard({ children }) {
   const { toast } = useToast();
 
   useEffect(() => {
-    if (!auth_user && is_checking_auth) {
+    if (!auth_user) {
       console.log("I'm inside auth check useeffect");
 
       auth_check(toast);

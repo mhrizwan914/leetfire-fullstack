@@ -10,6 +10,7 @@ import { use_auth_store } from "./use_auth_store";
 
 export const use_problem_store = create((set) => ({
   is_problem_creating: false,
+  is_problem_deleting: false,
   is_getting_all_problems: false,
   all_problems: null,
   is_problem_creating: false,
@@ -78,6 +79,24 @@ export const use_problem_store = create((set) => ({
       set({ problem: null });
     } finally {
       set({ is_getting_problem: false });
+    }
+  },
+
+  problem_delete_by_id: async function (id, toast) {
+    set({ is_problem_deleting: true });
+
+    try {
+      await axios_instance.delete(`/problem/delete/${id}`);
+    } catch (error) {
+      if (error?.response?.status === 401) {
+        const { logout } = use_auth_store.getState();
+        await logout(toast);
+        return;
+      }
+
+      return handle_axios_error(error, toast);
+    } finally {
+      set({ is_problem_deleting: false });
     }
   },
 }));

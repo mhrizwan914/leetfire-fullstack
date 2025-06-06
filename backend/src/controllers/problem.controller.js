@@ -245,7 +245,7 @@ export const problem_delete = async_handler(async (req, res) => {
     },
   });
   // Send data
-  return res.status(204).json(new api_response(204, {}, "Problem deleted successfully"));
+  return res.status(200);
 });
 
 // Solved
