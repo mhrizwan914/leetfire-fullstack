@@ -20,7 +20,8 @@ const app = express();
 // Cors configurations
 app.use(
   cors({
-    origin: `http://localhost:5173`,
+    origin:
+      process.env.NODE_ENV === "development" ? "http://localhost:5173" : "https://leetfire.com",
     methods: ["GET", "POST", "DELETE", "UPDATE", "OPTIONS"],
     allowedHeaders: ["Content-Type", "Authorization"],
     credentials: true,
