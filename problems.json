@@ -498,5 +498,109 @@
       "PYTHON": "def count_vowels(s):\n    count = 0\n    vowels = 'aeiouAEIOU'\n    for char in s:\n        if char in vowels:\n            count += 1\n    return count\n\ns = input().strip()\nprint(count_vowels(s))",
       "JAVA": "import java.util.Scanner;\n\npublic class Main {\n    public static int countVowels(String s) {\n        int count = 0;\n        String vowels = \"aeiouAEIOU\";\n        for (int i = 0; i < s.length(); i++) {\n            if (vowels.indexOf(s.charAt(i)) != -1) {\n                count++;\n            }\n        }\n        return count;\n    }\n\n    public static void main(String[] args) {\n        Scanner sc = new Scanner(System.in);\n        String s = sc.nextLine();\n        System.out.println(countVowels(s));\n    }\n}"
     }
+  },
+  {
+    "title": "Reverse a String",
+    "description": "Given a string s, return its reverse.",
+    "difficulty": "easy",
+    "tags": ["Strings", "Implementation"],
+    "constraints": "1 <= |s| <= 1000",
+    "hints": "Use string slicing or a loop to reverse the characters.",
+    "editorial": "Reversing a string can be done using built-in slicing (e.g. s[::-1] in Python), or by converting to a list and swapping characters.",
+    "test_cases": [
+      {
+        "input": "hello",
+        "output": "olleh"
+      },
+      {
+        "input": "abc",
+        "output": "cba"
+      },
+      {
+        "input": "a",
+        "output": "a"
+      }
+    ],
+    "examples": {
+      "JAVASCRIPT": {
+        "input": "code",
+        "output": "edoc",
+        "explanation": "Reversing 'code' gives 'edoc'."
+      },
+      "PYTHON": {
+        "input": "openai",
+        "output": "ianepo",
+        "explanation": "'openai' reversed is 'ianepo'."
+      },
+      "JAVA": {
+        "input": "java",
+        "output": "avaj",
+        "explanation": "'java' becomes 'avaj'."
+      }
+    },
+    "code_snippets": {
+      "JAVASCRIPT": "const fs = require('fs');\n\nfunction reverseString(s) {\n  // write your code here\n}\n\nconst s = fs.readFileSync(0, 'utf-8').trim();\nconsole.log(reverseString(s));",
+      "PYTHON": "def reverse_string(s):\n    # write your code here\n    pass\n\ns = input().strip()\nprint(reverse_string(s))",
+      "JAVA": "import java.util.*;\n\npublic class Main {\n    public static String reverseString(String s) {\n        // write your code here\n        return \"\";\n    }\n\n    public static void main(String[] args) {\n        Scanner sc = new Scanner(System.in);\n        String s = sc.nextLine();\n        System.out.println(reverseString(s));\n    }\n}"
+    },
+    "reference_solutions": {
+      "JAVASCRIPT": "const fs = require('fs');\n\nfunction reverseString(s) {\n  return s.split('').reverse().join('');\n}\n\nconst s = fs.readFileSync(0, 'utf-8').trim();\nconsole.log(reverseString(s));",
+      "PYTHON": "def reverse_string(s):\n    return s[::-1]\n\ns = input().strip()\nprint(reverse_string(s))",
+      "JAVA": "import java.util.*;\n\npublic class Main {\n    public static String reverseString(String s) {\n        return new StringBuilder(s).reverse().toString();\n    }\n\n    public static void main(String[] args) {\n        Scanner sc = new Scanner(System.in);\n        String s = sc.nextLine();\n        System.out.println(reverseString(s));\n    }\n}"
+    }
+  },
+  {
+    "title": "Even or Odd",
+    "description": "Given an integer n, determine whether it is even or odd.",
+    "difficulty": "easy",
+    "tags": ["Math", "Conditionals"],
+    "constraints": "-10^6 <= n <= 10^6",
+    "hints": "Use the modulo operator (%) to check if n is divisible by 2.",
+    "editorial": "To check whether a number is even or odd, use the modulo operation. If n % 2 == 0, it's even; otherwise, it's odd.",
+    "test_cases": [
+      {
+        "input": "4",
+        "output": "even"
+      },
+      {
+        "input": "7",
+        "output": "odd"
+      },
+      {
+        "input": "0",
+        "output": "even"
+      },
+      {
+        "input": "-3",
+        "output": "odd"
+      }
+    ],
+    "examples": {
+      "JAVASCRIPT": {
+        "input": "10",
+        "output": "even",
+        "explanation": "10 is divisible by 2."
+      },
+      "PYTHON": {
+        "input": "9",
+        "output": "odd",
+        "explanation": "9 is not divisible by 2."
+      },
+      "JAVA": {
+        "input": "-2",
+        "output": "even",
+        "explanation": "-2 % 2 == 0"
+      }
+    },
+    "code_snippets": {
+      "JAVASCRIPT": "const fs = require('fs');\n\nfunction evenOrOdd(n) {\n  // write your code here\n}\n\nconst n = parseInt(fs.readFileSync(0, 'utf-8').trim());\nconsole.log(evenOrOdd(n));",
+      "PYTHON": "def even_or_odd(n):\n    # write your code here\n    pass\n\nn = int(input().strip())\nprint(even_or_odd(n))",
+      "JAVA": "import java.util.*;\n\npublic class Main {\n    public static String evenOrOdd(int n) {\n        // write your code here\n        return \"\";\n    }\n\n    public static void main(String[] args) {\n        Scanner sc = new Scanner(System.in);\n        int n = sc.nextInt();\n        System.out.println(evenOrOdd(n));\n    }\n}"
+    },
+    "reference_solutions": {
+      "JAVASCRIPT": "const fs = require('fs');\n\nfunction evenOrOdd(n) {\n  return n % 2 === 0 ? 'even' : 'odd';\n}\n\nconst n = parseInt(fs.readFileSync(0, 'utf-8').trim());\nconsole.log(evenOrOdd(n));",
+      "PYTHON": "def even_or_odd(n):\n    return 'even' if n % 2 == 0 else 'odd'\n\nn = int(input().strip())\nprint(even_or_odd(n))",
+      "JAVA": "import java.util.*;\n\npublic class Main {\n    public static String evenOrOdd(int n) {\n        return n % 2 == 0 ? \"even\" : \"odd\";\n    }\n\n    public static void main(String[] args) {\n        Scanner sc = new Scanner(System.in);\n        int n = sc.nextInt();\n        System.out.println(evenOrOdd(n));\n    }\n}"
+    }
   }
 ]

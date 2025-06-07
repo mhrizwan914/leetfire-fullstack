@@ -13,6 +13,7 @@ import { BadgeCheck, Clock, Home, Send } from "lucide-react";
 // Components
 import Problem_Save_Btn from "@/components/Problem_Save_Btn";
 import Submission_List from "@/components/Submission_List";
+import Submission_Result from "@/components/Submission_Results";
 // Shadcn ui
 import {
   Select,
@@ -24,6 +25,14 @@ import {
 import { useToast } from "@/hooks/use-toast";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Button } from "@/components/ui/button";
+import {
+  Table,
+  TableBody,
+  TableCell,
+  TableHead,
+  TableHeader,
+  TableRow,
+} from "@/components/ui/table";
 // Editor
 import Editor from "@monaco-editor/react";
 
@@ -97,7 +106,7 @@ export default function Single_Problem_Page() {
     const body = {
       language: selected_lang,
       std_input: problem?.test_cases?.map(({ input }) => input),
-      expected_output: problem?.test_cases?.map(({ input }) => input),
+      expected_output: problem?.test_cases?.map(({ output }) => output),
       code: code_editor,
     };
     await problem_execution(id, body, toast);
@@ -281,9 +290,28 @@ export default function Single_Problem_Page() {
                 </div>
               </div>
             </div>
-            <div className="mt-5 flex justify-between items-center gap-2.5 dark:bg-white/80 px-4 py-3 rounded-md bg-black/80 dark:text-black/80 text-white/80">
+            <div className="mt-5 dark:bg-white/80 px-4 py-3 rounded-md bg-black/80 dark:text-black/80 text-white/80">
               <h4 className="text-primary text-lg font-bold">Test Cases</h4>
-              {}
+              {submission ? (
+                <Submission_Result submission={submission} />
+              ) : (
+                <Table>
+                  <TableHeader>
+                    <TableRow>
+                      <TableHead>Input</TableHead>
+                      <TableHead>Expected Output</TableHead>
+                    </TableRow>
+                  </TableHeader>
+                  <TableBody>
+                    {problem?.test_cases?.map((test_case, index) => (
+                      <TableRow key={index}>
+                        <TableCell>{test_case.input}</TableCell>
+                        <TableCell>{test_case.output}</TableCell>
+                      </TableRow>
+                    ))}
+                  </TableBody>
+                </Table>
+              )}
             </div>
           </div>
         </div>

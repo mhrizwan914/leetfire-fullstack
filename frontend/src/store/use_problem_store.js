@@ -1,6 +1,5 @@
 // Zustand
 import { create } from "zustand";
-import { persist, createJSONStorage } from "zustand/middleware";
 // Config
 import { axios_instance } from "@/utils/axios";
 // Utils
@@ -87,6 +86,7 @@ export const use_problem_store = create((set) => ({
 
     try {
       await axios_instance.delete(`/problem/delete/${id}`);
+      toast({ description: "Problem deleted successfully" });
     } catch (error) {
       if (error?.response?.status === 401) {
         const { logout } = use_auth_store.getState();

@@ -9,8 +9,8 @@ import Problems_Table from "./Problems_Table";
 import { useToast } from "@/hooks/use-toast";
 
 export default function Show_All_Problems() {
-  const { problem_get_all, all_problems, is_getting_all_problems } = use_problem_store();
-  const { problem_delete_by_id, is_problem_deleting } = use_problem_store();
+  const { problem_get_all, all_problems, is_getting_all_problems, is_problem_deleting } =
+    use_problem_store();
   const { auth_user } = use_auth_store();
   const { toast } = useToast();
 
@@ -19,7 +19,7 @@ export default function Show_All_Problems() {
   }, []);
 
   useEffect(() => {
-    if (auth_user && auth_user.id && !is_problem_deleting) problem_get_all(toast);
+    if (all_problems) problem_get_all(toast);
   }, [is_problem_deleting]);
 
   if (is_getting_all_problems) {

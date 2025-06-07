@@ -43,18 +43,21 @@ export default function Problems_Table({ all_problems, auth_user }) {
   }, [all_problems]);
 
   const filtered_problems = useMemo(() => {
+    console.log("Inside Filtered Problem");
+
     return (all_problems || null)
       .filter((problem) => problem?.title?.toLowerCase()?.includes(search?.toLowerCase()))
       .filter((problem) => (difficulty === "All" ? true : problem?.difficulty === difficulty))
       .filter((problem) =>
         selected_tags === "All" ? true : problem?.tags?.includes(selected_tags),
       );
-  }, [search, difficulty, selected_tags]);
+  }, [search, difficulty, selected_tags, all_problems]);
 
-  const items_per_page = 5;
+  const items_per_page = 2;
   const total_pages = Math.ceil(filtered_problems?.length / items_per_page);
 
   const paginated_problems = useMemo(() => {
+    console.log("Inside Paginated Problem");
     return filtered_problems?.slice(
       (current_page - 1) * items_per_page,
       current_page * items_per_page,

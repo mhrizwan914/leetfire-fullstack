@@ -245,7 +245,7 @@ export const problem_delete = async_handler(async (req, res) => {
     },
   });
   // Send data
-  return res.status(200);
+  return res.sendStatus(200);
 });
 
 // Solved
