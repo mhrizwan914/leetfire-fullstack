@@ -39,22 +39,22 @@ const MAX_REQUESTS = 10;
 
 // Sliding window
 export default function rate_limit(req, res, next) {
-  const ip = req.ip;
-  const current_time = Date.now();
+  // const ip = req.ip;
+  // const current_time = Date.now();
 
-  if (!request_logs[ip]) {
-    request_logs[ip] = [];
-  }
+  // if (!request_logs[ip]) {
+  //   request_logs[ip] = [];
+  // }
 
-  request_logs[ip] = request_logs[ip].filter(
-    (e) => current_time - e <= WINDOW_SIZE_IN_SECONDS * 1000,
-  );
+  // request_logs[ip] = request_logs[ip].filter(
+  //   (e) => current_time - e <= WINDOW_SIZE_IN_SECONDS * 1000,
+  // );
 
-  if (request_logs[ip].length >= MAX_REQUESTS) {
-    throw new api_error(429, "Too many requests. Please try again later.");
-  }
+  // if (request_logs[ip].length >= MAX_REQUESTS) {
+  //   throw new api_error(429, "Too many requests. Please try again later.");
+  // }
 
-  request_logs[ip].push(current_time);
+  // request_logs[ip].push(current_time);
 
   next();
 }

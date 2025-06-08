@@ -4,8 +4,18 @@ import { CheckCircle2, XCircle, Clock, MemoryStick as Memory } from "lucide-reac
 import { Badge } from "./ui/badge";
 // Utils
 import capitalize_string from "@/utils/capitalize_string";
+import {
+  Table,
+  TableBody,
+  TableCell,
+  TableHead,
+  TableHeader,
+  TableRow,
+} from "@/components/ui/table";
 
 export default function Submission_Result({ submission }) {
+  console.log(submission);
+
   // Parse stringified arrays
   const memoryArr = JSON.parse(submission.memory || "[]");
   const timeArr = JSON.parse(submission.time || "[]");
@@ -27,30 +37,29 @@ export default function Submission_Result({ submission }) {
 
   return (
     <div className="space-y-6">
-      {/* Overall Status */}
       <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
-        <div className="card bg-base-200 shadow-lg">
-          <div className="card-body p-4">
+        <div className="bg-base-200 shadow-lg">
+          <div className=" p-4">
             <h3 className="card-title text-sm">Status</h3>
             <div
               className={`text-lg font-bold ${
-                submission.status === "Accepted" ? "text-success" : "text-error"
+                submission.status === "accepted" ? "text-green-500" : "text-red-500"
               }`}>
-              {submission.status}
+              {capitalize_string(submission.status)}
             </div>
           </div>
         </div>
 
-        <div className="card bg-base-200 shadow-lg">
-          <div className="card-body p-4">
-            <h3 className="card-title text-sm">Success Rate</h3>
+        <div className=" bg-base-200 shadow-lg">
+          <div className="p-4">
+            <h3 className="text-sm">Success Rate</h3>
             <div className="text-lg font-bold">{successRate.toFixed(1)}%</div>
           </div>
         </div>
 
-        <div className="card bg-base-200 shadow-lg">
-          <div className="card-body p-4">
-            <h3 className="card-title text-sm flex items-center gap-2">
+        <div className="bg-base-200 shadow-lg">
+          <div className="p-4">
+            <h3 className="text-sm flex items-center gap-2">
               <Clock className="w-4 h-4" />
               Avg. Runtime
             </h3>
@@ -58,9 +67,9 @@ export default function Submission_Result({ submission }) {
           </div>
         </div>
 
-        <div className="card bg-base-200 shadow-lg">
-          <div className="card-body p-4">
-            <h3 className="card-title text-sm flex items-center gap-2">
+        <div className="bg-base-200 shadow-lg">
+          <div className="p-4">
+            <h3 className="text-sm flex items-center gap-2">
               <Memory className="w-4 h-4" />
               Avg. Memory
             </h3>
@@ -68,46 +77,46 @@ export default function Submission_Result({ submission }) {
           </div>
         </div>
       </div>
-
-      {/* Test Cases Results */}
-      <div className="card bg-base-100 shadow-xl">
-        <div className="card-body">
-          <h2 className="card-title mb-4">Test Cases Results</h2>
-          <div className="overflow-x-auto">
-            <table className="table table-zebra w-full">
-              <thead>
-                <tr>
-                  <th>Status</th>
-                  <th>Expected Output</th>
-                  <th>Your Output</th>
-                  <th>Memory</th>
-                  <th>Time</th>
-                </tr>
-              </thead>
-              <tbody>
-                {submission.test_cases.map((testCase) => (
-                  <tr key={testCase.id}>
-                    <td>
-                      {testCase.passed ? (
-                        <div className="flex items-center gap-2 text-success">
-                          <CheckCircle2 className="w-5 h-5" />
-                          Passed
-                        </div>
-                      ) : (
-                        <div className="flex items-center gap-2 text-error">
-                          <XCircle className="w-5 h-5" />
-                          Failed
-                        </div>
-                      )}
-                    </td>
-                    <td className="font-mono">{testCase.expected}</td>
-                    <td className="font-mono">{testCase.stdout || "null"}</td>
-                    <td>{testCase.memory}</td>
-                    <td>{testCase.time}</td>
-                  </tr>
-                ))}
-              </tbody>
-            </table>
+      <div className="bg-base-100 shadow-xl">
+        <div className="">
+          <h4 className="text-primary text-xl font-bold mb-5">Test Cases Results</h4>
+          <div className="">
+            <Table>
+              <TableHeader>
+                <TableRow className="hover:bg-transparent">
+                  <TableHead className="text-black/80">Status</TableHead>
+                  <TableHead className="text-black/80">Expected Output</TableHead>
+                  <TableHead className="text-black/80">Your Output</TableHead>
+                  <TableHead className="text-black/80">Memory</TableHead>
+                  <TableHead className="text-black/80">Time</TableHead>
+                </TableRow>
+              </TableHeader>
+              <TableBody>
+                {submission.test_cases.map(
+                  ({ id, status, expected_output, std_output, memory, time }) => (
+                    <TableRow key={id} className="hover:bg-transparent">
+                      <TableCell>
+                        {status === "passed" ? (
+                          <div className="flex items-center gap-2.5">
+                            <CheckCircle2 className="w-5 h-5 text-green-500" />
+                            Passed
+                          </div>
+                        ) : (
+                          <div className="flex items-center gap-2.5">
+                            <XCircle className="w-5 h-5 text-red-500" />
+                            Failed
+                          </div>
+                        )}
+                      </TableCell>
+                      <TableCell>{expected_output}</TableCell>
+                      <TableCell>{std_output || "null"}</TableCell>
+                      <TableCell>{memory}</TableCell>
+                      <TableCell>{time}</TableCell>
+                    </TableRow>
+                  ),
+                )}
+              </TableBody>
+            </Table>
           </div>
         </div>
       </div>

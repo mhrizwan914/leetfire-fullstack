@@ -53,7 +53,7 @@ export default function Problems_Table({ all_problems, auth_user }) {
       );
   }, [search, difficulty, selected_tags, all_problems]);
 
-  const items_per_page = 2;
+  const items_per_page = 5;
   const total_pages = Math.ceil(filtered_problems?.length / items_per_page);
 
   const paginated_problems = useMemo(() => {

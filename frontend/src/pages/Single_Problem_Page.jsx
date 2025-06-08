@@ -283,28 +283,32 @@ export default function Single_Problem_Page() {
                   }}
                 />
                 <div className="flex justify-between gap-5 items-center mt-5">
-                  <Button disabled={is_executing} onClick={handle_execute_code}>
+                  <Button
+                    disabled={is_executing}
+                    onClick={handle_execute_code}
+                    variant="outline"
+                    className="bg-green-500">
                     Run Code
                   </Button>
                   <Button>Submit Code</Button>
                 </div>
               </div>
             </div>
+            <h4 className="text-primary text-xl font-bold">Test Cases</h4>
             <div className="mt-5 dark:bg-white/80 px-4 py-3 rounded-md bg-black/80 dark:text-black/80 text-white/80">
-              <h4 className="text-primary text-lg font-bold">Test Cases</h4>
               {submission ? (
                 <Submission_Result submission={submission} />
               ) : (
                 <Table>
                   <TableHeader>
-                    <TableRow>
-                      <TableHead>Input</TableHead>
-                      <TableHead>Expected Output</TableHead>
+                    <TableRow className="hover:bg-transparent">
+                      <TableHead className="text-black/80">Input</TableHead>
+                      <TableHead className="text-black/80">Expected Output</TableHead>
                     </TableRow>
                   </TableHeader>
                   <TableBody>
                     {problem?.test_cases?.map((test_case, index) => (
-                      <TableRow key={index}>
+                      <TableRow className="hover:bg-transparent" key={index}>
                         <TableCell>{test_case.input}</TableCell>
                         <TableCell>{test_case.output}</TableCell>
                       </TableRow>

@@ -5,7 +5,7 @@ export default function Private({ children }) {
   return (
     <>
       <Navbar />
-      {children}
+      <main>{children}</main>
     </>
   );
 }

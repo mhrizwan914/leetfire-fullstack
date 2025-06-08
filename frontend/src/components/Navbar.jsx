@@ -2,6 +2,7 @@
 import { Link } from "react-router";
 // Components
 import Logout_Btn from "./Logout_Btn";
+import Logo from "./Logo";
 // Shadcn ui
 import {
   Menubar,
@@ -12,8 +13,6 @@ import {
 } from "@/components/ui/menubar";
 // Store
 import { use_auth_store } from "@/store/use_auth_store";
-// Media
-import logo from "/logo.png";
 
 export default function Navbar() {
   const { auth_user } = use_auth_store();
@@ -22,10 +21,7 @@ export default function Navbar() {
       <div className="dark:bg-white/80 bg-black/80 dark:text-black/80 text-white/80 py-2">
         <div className="container">
           <div className="flex justify-between items-center">
-            <Link className="font-bold text-xl flex items-center gap-2.5" to="/dashboard">
-              <img src={logo} alt="logo" className="max-w-[50px] h-auto" />
-              <span>LeetFire</span>
-            </Link>
+            <Logo href="/dashboard" />
             <div className="flex items-center gap-5">
               {auth_user?.role === "admin" ? (
                 <Menubar>
