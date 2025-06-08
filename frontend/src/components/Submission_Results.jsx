@@ -14,8 +14,6 @@ import {
 } from "@/components/ui/table";
 
 export default function Submission_Result({ submission }) {
-  console.log(submission);
-
   // Parse stringified arrays
   const memoryArr = JSON.parse(submission.memory || "[]");
   const timeArr = JSON.parse(submission.time || "[]");

@@ -48,6 +48,7 @@ export default function Single_Problem_Page() {
     submission_by_id,
     submission: all_submissions,
   } = use_submissions_store();
+  console.log(all_submissions);
   const [selected_lang, set_selected_lang] = useState(null);
   const [code_editor, set_scode_editor] = useState("");
   const [test_cases, set_test_cases] = useState([]);

@@ -57,7 +57,7 @@ export const user_login = async_handler(async (req, res) => {
     httpOnly: true,
     sameSite: "strict",
     secure: process.env.NODE_ENV !== "development",
-    maxAge: 15 * 60 * 1000, // 15min
+    maxAge: 30 * 60 * 1000, // 30min
   };
   const cookie_option_refresh = {
     httpOnly: true,
